@@ -35,11 +35,17 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
 
-    public function __construct()
+    /**
+     * Category constructor.
+     * @param string $title
+     */
+    public function __construct(string $title)
     {
+        $this->title = $title;
         $this->products = new ArrayCollection();
     }
 
