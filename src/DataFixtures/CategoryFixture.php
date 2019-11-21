@@ -25,11 +25,11 @@ class CategoryFixture extends AbstractFixture
     ];
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
-        foreach(self::CATEGORIES as $slug => $title) {
+        foreach (self::CATEGORIES as $slug => $title) {
             $category = new Category($title);
 
             $manager->persist($category);
