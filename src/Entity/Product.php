@@ -49,8 +49,13 @@ class Product
      */
     private $images;
 
-    public function __construct()
+    /**
+     * Product constructor.
+     * @param string $title
+     */
+    public function __construct(string $title)
     {
+        $this->title = $title;
         $this->images = new ArrayCollection();
     }
 

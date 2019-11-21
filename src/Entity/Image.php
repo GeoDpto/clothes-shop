@@ -26,6 +26,11 @@ class Image
      */
     private $product;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $folder;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Image
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getFolder(): ?string
+    {
+        return $this->folder;
+    }
+
+    public function setFolder(string $folder): self
+    {
+        $this->folder = $folder;
 
         return $this;
     }

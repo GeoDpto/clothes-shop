@@ -12,7 +12,7 @@ class CategoryFixture extends AbstractFixture
     /**
      * @const array CATEGORIES
      */
-    private const CATEGORIES = [
+    public const CATEGORIES = [
         'shoes' => 'Shoes',
         'shirts' => 'shirts',
         'sweatshirts' => 'Sweatshirts',
