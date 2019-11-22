@@ -26,6 +26,7 @@ class ProductFixture extends AbstractFixture
                 $this->getReference($this->faker->randomElement(\array_keys(CategoryFixture::CATEGORIES))))
                     ->setDescription(\ucfirst($this->faker->words($this->faker->numberBetween(4, 8), true)))
                     ->setMainImage($this->faker->imageUrl())
+                    ->setPrice($this->faker->numberBetween(500, 3000))
             ;
 
             //TODO: Add a reference for ImageFixture.

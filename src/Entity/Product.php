@@ -50,6 +50,11 @@ class Product
     private $images;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
+
+    /**
      * Product constructor.
      * @param string $title
      */
@@ -151,6 +156,18 @@ class Product
                 $image->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
