@@ -6,15 +6,31 @@ namespace App\Service\Product;
 
 use App\Collection\ProductCollection;
 use App\Entity\Product;
+use App\Repository\Product\ProductRepository;
+use App\Repository\Product\ProductRepositoryInterface;
 
 class ProductPresentation implements ProductPresentationInterface
 {
+    /**
+     * @var ProductRepository
+     */
+    private $productPresentationRepository;
+
+    /**
+     * ProductPresentation constructor.
+     * @param ProductRepositoryInterface $productPresentationRepository
+     */
+    public function __construct(ProductRepositoryInterface $productPresentationRepository)
+    {
+        $this->productPresentationRepository = $productPresentationRepository;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function getPublished(): ProductCollection
     {
-        // TODO: Implement getLatest() method.
+        return $this->productPresentationRepository->getPublished();
     }
 
     /**
@@ -22,14 +38,11 @@ class ProductPresentation implements ProductPresentationInterface
      */
     public function getById(int $id): Product
     {
-        // TODO: Implement getProductById() method.
+        return $this->productPresentationRepository->getById($id);
     }
 
-    /**
-     * @return ProductCollection
-     */
     public function getLatest(): ProductCollection
     {
-        // TODO: Implement getLatest() method.
+        return $this->productPresentationRepository->getLatest();
     }
 }
