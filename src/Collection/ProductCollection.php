@@ -2,26 +2,60 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Collection;
+namespace App\Collection;
 
 use App\Entity\Product;
-use App\Service\Product\ProductPresentationInterface;
+use App\Exception\CollectionIsEmptyException;
 
-class ProductCollection implements ProductPresentationInterface
+
+class ProductCollection implements \IteratorAggregate
 {
     /**
-     * {@inheritdoc}
+     * @var Product[]
      */
-    public function getLatest(): ProductCollection
+    private $products;
+
+    /**
+     * ProductCollection constructor.
+     *
+     * @param Product ...$products
+     */
+    public function __construct(Product ...$products)
     {
-        // TODO: Implement getLatest() method.
+        $this->products = $products;
     }
 
     /**
-     * {@inheritdoc}
+     * @return Product
+     * @throws CollectionIsEmptyException
      */
-    public function getProductById(int $id): Product
+    public function shift(): Product
     {
-        // TODO: Implement getProductById() method.
+        $article = \array_shift($this->products);
+
+        if (null === $article) {
+            throw new CollectionIsEmptyException('products');
+        }
+
+        return $article;
+    }
+
+    /**
+     * Returns products iterator.
+     */
+    public function getIterator(): iterable
+    {
+        return new \ArrayIterator($this->products);
+    }
+
+    /**
+     * @param int $number
+     * @return iterable
+     */
+    public function slice(int $number): iterable
+    {
+        for ($i = 0; $i < $number; ++$i) {
+            yield $this->shift();
+        }
     }
 }
