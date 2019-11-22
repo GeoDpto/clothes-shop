@@ -18,5 +18,10 @@ interface ProductPresentationInterface
      * @param int $id
      * @return Product
      */
-    public function getProductById(int $id): Product;
+    public function getId(int $id): Product;
+
+    /**
+     * @return ProductCollection
+     */
+    public function getLatest(): ProductCollection;
 }

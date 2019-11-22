@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Product;
 
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

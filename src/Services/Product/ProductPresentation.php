@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service\Product;
 
+use App\Collection\ProductCollection;
 use App\Entity\Product;
-use App\Service\Collection\ProductCollection;
 
 class ProductPresentation implements ProductPresentationInterface
 {
@@ -20,8 +20,16 @@ class ProductPresentation implements ProductPresentationInterface
     /**
      * {@inheritdoc}
      */
-    public function getProductById(int $id): Product
+    public function getById(int $id): Product
     {
         // TODO: Implement getProductById() method.
+    }
+
+    /**
+     * @return ProductCollection
+     */
+    public function getLatest(): ProductCollection
+    {
+        // TODO: Implement getLatest() method.
     }
 }
