@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Product;
+namespace App\Repository\Product;
 
 use App\Collection\ProductCollection;
 use App\Entity\Product;
 
-interface ProductPresentationInterface
+interface ProductRepositoryInterface
 {
     /**
      * @return ProductCollection
