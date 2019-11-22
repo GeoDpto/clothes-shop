@@ -7,7 +7,7 @@ namespace App\Service\Product;
 use App\Collection\ProductCollection;
 use App\Entity\Product;
 
-interface ProductPresentationInterface
+interface ProductPresentationServiceInterface
 {
     /**
      * @return ProductCollection
@@ -21,7 +21,8 @@ interface ProductPresentationInterface
     public function getById(int $id): Product;
 
     /**
+     * @param int $count
      * @return ProductCollection
      */
-    public function getLatest(): ProductCollection;
+    public function getLatest(int $count = 20): ProductCollection;
 }

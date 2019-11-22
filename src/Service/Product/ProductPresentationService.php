@@ -9,7 +9,7 @@ use App\Entity\Product;
 use App\Repository\Product\ProductRepository;
 use App\Repository\Product\ProductRepositoryInterface;
 
-class ProductPresentation implements ProductPresentationInterface
+class ProductPresentationService implements ProductPresentationServiceInterface
 {
     /**
      * @var ProductRepository
@@ -17,7 +17,7 @@ class ProductPresentation implements ProductPresentationInterface
     private $productPresentationRepository;
 
     /**
-     * ProductPresentation constructor.
+     * ProductPresentationService constructor.
      * @param ProductRepositoryInterface $productPresentationRepository
      */
     public function __construct(ProductRepositoryInterface $productPresentationRepository)
@@ -41,8 +41,8 @@ class ProductPresentation implements ProductPresentationInterface
         return $this->productPresentationRepository->getById($id);
     }
 
-    public function getLatest(): ProductCollection
+    public function getLatest(int $count = 16): ProductCollection
     {
-        return $this->productPresentationRepository->getLatest();
+        return new ProductCollection(...$this->productPresentationRepository->getLatest($count));
     }
 }

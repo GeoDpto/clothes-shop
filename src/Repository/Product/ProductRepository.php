@@ -29,7 +29,7 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
     /**
      * {@inheritdoc}
      */
-    public function getPublished(): ProductCollection
+    public function getPublished(): iterable
     {
         $query = $this->createQueryBuilder('p')
             ->innerJoin('p.category', 'c')
@@ -62,14 +62,14 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
     /**
      * {@inheritdoc}
      */
-    public function getLatest(): ProductCollection
+    public function getLatest(int $count): iterable
     {
         $query = $this->createQueryBuilder('p')
             ->innerJoin('p.category', 'c')
             ->addSelect('c')
-            ->andWhere('p.publishedAt IS NOT NULL')
-            ->orderBy('p.publishedAt', 'DESC')
-            ->setMaxResults('20')
+            ->andWhere('p.createdAt IS NOT NULL')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults($count)
             ->getQuery()
         ;
 

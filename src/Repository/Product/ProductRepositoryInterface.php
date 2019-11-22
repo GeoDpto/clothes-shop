@@ -12,7 +12,7 @@ interface ProductRepositoryInterface
     /**
      * @return ProductCollection
      */
-    public function getPublished(): ProductCollection;
+    public function getPublished(): iterable;
 
     /**
      * @param int $id
@@ -23,5 +23,5 @@ interface ProductRepositoryInterface
     /**
      * @return ProductCollection
      */
-    public function getLatest(): ProductCollection;
+    public function getLatest(int $count): iterable;
 }
