@@ -7,20 +7,20 @@ namespace App\Service\Category;
 use App\Collection\CategoryCollection;
 use App\Collection\ProductCollection;
 use App\Entity\Category;
-use App\Repository\Category\CategoryRepository;
+use App\Repository\Category\CategoryRepositoryInterface;
 
 class CategoryService implements CategoryServiceInterface
 {
     /**
-     * @var CategoryRepository
+     * @var CategoryRepositoryInterface
      */
     private $categoryRepository;
 
     /**
      * CategoryService constructor.
-     * @param CategoryRepository $categoryRepository
+     * @param CategoryRepositoryInterface $categoryRepository
      */
-    private function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

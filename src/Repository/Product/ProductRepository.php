@@ -2,12 +2,11 @@
 
 namespace App\Repository\Product;
 
-use App\Collection\ProductCollection;
 use App\Entity\Product;
 use App\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\NonUniqueResultException;
+
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
