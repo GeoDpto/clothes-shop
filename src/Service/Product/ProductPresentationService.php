@@ -30,7 +30,7 @@ class ProductPresentationService implements ProductPresentationServiceInterface
      */
     public function getPublished(): ProductCollection
     {
-        return $this->productPresentationRepository->getPublished();
+        return new ProductCollection(...$this->productPresentationRepository->getPublished());
     }
 
     /**
