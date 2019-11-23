@@ -49,7 +49,7 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
             ->andWhere('p.id = :id')
             ->setParameter('id', $id)
             ->andWhere('p.publishedAt IS NOT NULL')
-            ->getQuery()
+              ->getQuery()
         ;
 
         if (null !== $query->getOneOrNullResult()) {

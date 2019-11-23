@@ -2,32 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Category;
+namespace App\Repository\Category;
 
 use App\Collection\CategoryCollection;
-use App\Collection\ProductCollection;
 use App\Entity\Category;
 
-interface CategoryServiceInterface
+interface CategoryRepositoryInterface
 {
     /**
      * Returns collection of categories.
      *
-     * @return CategoryCollection
+     * @return iterable
      */
-    public function getCategories(): CategoryCollection;
+    public function getCategories(): iterable;
 
     /**
      * Returns collection of articles in category by slug.
-     *
      * @param string $slug
-     * @return ProductCollection
+     * @return iterable
      */
-    public function getPostsBySlug(string $slug): ProductCollection;
+    public function getPostsBySlug(string $slug): iterable;
 
     /**
      * Returns category by slug.
-     *
      * @param string $slug
      * @return Category
      */

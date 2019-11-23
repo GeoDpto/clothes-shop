@@ -41,7 +41,7 @@ class CategoryCollection
     }
 
     /**
-     * Returns products iterator.
+     * Returns categories iterator.
      */
     public function getIterator(): iterable
     {
