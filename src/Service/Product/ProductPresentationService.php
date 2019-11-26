@@ -38,9 +38,16 @@ class ProductPresentationService implements ProductPresentationServiceInterface
      */
     public function getById(int $id): Product
     {
-        return $this->productPresentationRepository->getById($id);
+        $product = $this->productPresentationRepository->getById($id);
+
+
+
+        return $product;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getLatest(int $count = 16): ProductCollection
     {
         return new ProductCollection(...$this->productPresentationRepository->getLatest($count));
