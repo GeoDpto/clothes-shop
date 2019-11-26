@@ -19,7 +19,7 @@ class DefaultController extends AbstractController
      */
     public function index(ProductPresentationServiceInterface $productPresentation, CategoryServiceInterface $categoryService): Response
     {
-        return $this->render('default/product.html.twig', [
+        return $this->render('default/index.html.twig', [
             'latestProducts' => $productPresentation->getLatest(16),
             'categories' => $categoryService->getCategories(),
         ]);
