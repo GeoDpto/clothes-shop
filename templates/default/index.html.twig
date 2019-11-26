@@ -59,7 +59,7 @@
                 <div class="col-lg-8 col-md-12" id="category-{{ category.id }}">
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
-                            <a href="#">
+                            <a href="{{ path('category', {slug: category.slug}) }}">
                             <div class="single-deal">
                                 <div class="overlay"></div>
                                 <img class="img-fluid w-100" src="img/category/c1.jpg" alt="">
@@ -71,7 +71,7 @@
                         </div>
                         {% set category = categories.shift %}
                         <div class="col-lg-4 col-md-4" id="category-{{ category.id }}">
-                            <a href="#" class="single-deal">
+                            <a href="{{ path('category', {slug: category.slug}) }}" class="single-deal">
                                 <div class="overlay"></div>
                                 <img class="img-fluid w-100" src="img/category/c2.jpg" alt="">
                                     <div class="deal-details">
@@ -82,7 +82,7 @@
                         </div>
                         {% set category = categories.shift %}
                         <div class="col-lg-4 col-md-4" id="category-{{ category.id }}">
-                            <a href="#" class="single-deal">
+                            <a href="{{ path('category', {slug: category.slug}) }}" class="single-deal">
                                 <div class="overlay"></div>
                                 <img class="img-fluid w-100" src="img/category/c3.jpg" alt="">
                                     <div class="deal-details">
@@ -92,7 +92,7 @@
                         </div>
                         {% set category = categories.shift %}
                         <div class="col-lg-8 col-md-8" id="category-{{ category.id }}">
-                            <a href="#" class="single-deal">
+                            <a href="{{ path('category', {slug: category.slug}) }}" class="single-deal">
                                 <div class="overlay"></div>
                                 <img class="img-fluid w-100" src="img/category/c4.jpg" alt="">
                                     <div class="deal-details">
@@ -104,7 +104,7 @@
                 </div>
                 {% set category = categories.shift %}
                 <div class="col-lg-4 col-md-6" id="category-{{ category.id }}">
-                    <a href="#" class="single-deal">
+                    <a href="{{ path('category', {slug: category.slug}) }}" class="single-deal">
                         <div class="overlay"></div>
                         <img class="img-fluid w-100" src="img/category/c5.jpg" alt="">
                             <div class="deal-details">
@@ -138,7 +138,7 @@
                             <div class="single-product">
                                 <img class="img-fluid" src="{{ product.mainImage }}" alt="">
                                 <div class="product-details">
-                                    <h6>{{ product.title }}</h6>
+                                    <a href="{{ path('product', {id: product.id}) }}"><h6>{{ product.title }}</h6></a>
                                     <div class="price">
                                         <h6>$ {{ product.price }}</h6>
 {#                                        <h6 class="l-through">$210.00</h6>#}
@@ -187,7 +187,9 @@
                             <div class="single-product">
                                 <img class="img-fluid" src="{{ product.mainImage }}" alt="">
                                 <div class="product-details">
+                                    <a href="{{ path('product', {id: product.id}) }}">
                                     <h6>{{ product.title }}</h6>
+                                    </a>
                                     <div class="price">
                                         <h6>$ {{ product.price }}</h6>
                                         {#                                        <h6 class="l-through">$210.00</h6>#}
