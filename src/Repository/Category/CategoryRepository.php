@@ -37,7 +37,7 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
     /**
      * {@inheritdoc}
      */
-    public function getPostsBySlug(string $slug): iterable
+    public function getProductsBySlug(string $slug): iterable
     {
         $query = $this->getEntityManager()->createQueryBuilder()
             ->addSelect('p')

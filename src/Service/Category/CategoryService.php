@@ -28,9 +28,9 @@ class CategoryService implements CategoryServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getPostsBySlug(string $slug): ProductCollection
+    public function getProductsBySlug(string $slug): ProductCollection
     {
-        return new ProductCollection(...$this->categoryRepository->getPostsBySlug($slug));
+        return new ProductCollection(...$this->categoryRepository->getProductsBySlug($slug));
     }
 
     /**

@@ -7,5 +7,9 @@ products:
     controller: App\Controller\ProductsController:show
 
 product:
-    path: /products/product-{id}
+    path: /products/product-{id}/
     controller: App\Controller\ProductController:showProduct
+
+category:
+    path: /products/category/{slug}/
+    controller: App\Controller\CategoryController:showCategory

@@ -23,7 +23,7 @@ interface CategoryServiceInterface
      * @param string $slug
      * @return ProductCollection
      */
-    public function getPostsBySlug(string $slug): ProductCollection;
+    public function getProductsBySlug(string $slug): ProductCollection;
 
     /**
      * Returns category by slug.

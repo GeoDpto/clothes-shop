@@ -11,7 +11,7 @@
                     <ul class="main-categories">
                         {% for category in categories %}
                         <li class="main-nav-list">
-                            <a href="#">
+                            <a href="{{ path('category', {slug: category.slug}) }}">
                                 {{ category.title }}<span class="number">(53)</span>
                             </a>
                         </li>

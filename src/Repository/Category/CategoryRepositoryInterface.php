@@ -21,7 +21,7 @@ interface CategoryRepositoryInterface
      * @param string $slug
      * @return iterable
      */
-    public function getPostsBySlug(string $slug): iterable;
+    public function getProductsBySlug(string $slug): iterable;
 
     /**
      * Returns category by slug.
