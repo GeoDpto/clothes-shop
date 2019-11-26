@@ -95,7 +95,7 @@ class Product
 
     public function getMainImage(): ?string
     {
-        return $this->mainImage;
+        return $this->mainImage ?? 'noimage.png';
     }
 
     public function setMainImage(?string $mainImage): self
