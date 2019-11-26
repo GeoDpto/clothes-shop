@@ -33,10 +33,12 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
         $query = $this->createQueryBuilder('p')
             ->innerJoin('p.category', 'c')
             ->addSelect('c')
-            ->andWhere('p.publishedAt IS NOT NULL')
-            ->orderBy('p.publishedAt', 'DESC')
+            ->andWhere('p.createdAt IS NOT NULL')
+            ->orderBy('p.createdAt', 'DESC')
             ->getQuery()
         ;
+
+        return $query->getResult();
     }
 
     /**
@@ -47,7 +49,7 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
         $query = $this->createQueryBuilder('p')
             ->andWhere('p.id = :id')
             ->setParameter('id', $id)
-            ->andWhere('p.publishedAt IS NOT NULL')
+            ->andWhere('p.createdAt IS NOT NULL')
               ->getQuery()
         ;
 
