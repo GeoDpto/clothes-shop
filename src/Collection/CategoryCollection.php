@@ -7,7 +7,7 @@ namespace App\Collection;
 use App\Entity\Category;
 use App\Exception\CollectionIsEmptyException;
 
-class CategoryCollection
+class CategoryCollection implements \IteratorAggregate
 {
     /**
      * @var Category[]
