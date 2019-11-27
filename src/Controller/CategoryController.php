@@ -17,7 +17,7 @@ class CategoryController extends AbstractController
      */
     public function showCategory(string $slug, CategoryServiceInterface $categoryService): Response
     {
-        return $this->render('products/products.html.twig', [
+        return $this->render('category/category.html.twig', [
             'categories' => $categoryService->getCategories(),
             'products' => $categoryService->getProductsBySlug($slug),
         ]);
