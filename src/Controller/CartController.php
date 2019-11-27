@@ -25,6 +25,7 @@ class CartController extends AbstractController
 
     /**
      * @Route("/cart", name="cart")
+     *
      */
     public function showCart(): Response
     {
@@ -32,13 +33,9 @@ class CartController extends AbstractController
         ]);
     }
 
-    /**
-     * @return Response
-     *
-     */
     public function miniCart(): Response
     {
-        return $this->render('cart/minicart.html.twig', [
+        return $this->render('cart/_minicart.html.twig', [
             'countProducts' => $this->cartService->countProducts(),
         ]);
     }
