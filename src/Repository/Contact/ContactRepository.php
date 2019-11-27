@@ -14,6 +14,10 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class ContactRepository extends ServiceEntityRepository implements ContactRepositoryInterface
 {
+    /**
+     * ContactRepository constructor.
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Contact::class);
@@ -24,5 +28,17 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
      */
     public function insertContactData(array $data): void
     {
+        $em = $this->getEntityManager();
+        $contact = new Contact();
+
+        $contact->setName($data['name'])
+            ->setEmail($data['email'])
+            ->setSubject($data['subject'])
+            ->setMessage($data['message'])
+        ;
+
+        $em->persist($contact);
+
+        $em->flush();
     }
 }
