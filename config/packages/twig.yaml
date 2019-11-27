@@ -4,3 +4,6 @@ twig:
     strict_variables: '%kernel.debug%'
     paths:
         "%kernel.root_dir%/../vendor/knplabs/knp-paginator-bundle": KnpPaginator
+
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'
