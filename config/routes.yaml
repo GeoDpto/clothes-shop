@@ -13,3 +13,7 @@ product:
 category:
     path: /products/category/{slug}/
     controller: App\Controller\CategoryController:showCategory
+
+cart:
+    path: /cart/
+    controller: App\Controller\CartController:showCart
