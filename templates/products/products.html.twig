@@ -48,22 +48,23 @@
                         {% for product in products %}
                         <div class="col-lg-4 col-md-6">
                             <div class="single-product" id="product-{{ product.id }}">
-                                <a href="#">
+                                <a href="{{ path('product', {id: product.id }) }}">
                                     <img class="img-fluid" src="{{ product.mainImage }}" alt="">
                                 </a>
                                 <div class="product-details">
-                                    <a href="#">
+                                    <a href="{{ path('product', {id: product.id }) }}">
                                         <h6>{{ product.title }}</h6>
                                     </a>
                                     <div class="price">
                                         <h6>${{ product.price }}</h6>
                                     </div>
                                     <div class="prd-bottom">
-                                        <a href="#" class="social-info">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">add to bag</p>
-                                        </a>
+                                        <form method="POST">
+                                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                                            <button type="submit">add to bag</button>
+                                        </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
