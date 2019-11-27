@@ -12,12 +12,14 @@ class ProductController extends AbstractController
 {
     /**
      * @Route("/products/product-{id}", name="product")
+     *
      * @param int $id
      * @param ProductPresentationServiceInterface $productPresentationService
      * @param ImagePresentationServiceInterface $imagePresentationService
      * @return Response
      */
-    public function showProduct(int $id, ProductPresentationServiceInterface $productPresentationService, ImagePresentationServiceInterface $imagePresentationService): Response
+    public function showProduct(int $id, ProductPresentationServiceInterface $productPresentationService,
+                                ImagePresentationServiceInterface $imagePresentationService): Response
     {
         return $this->render('product/product.html.twig', [
             'product' => $productPresentationService->getById($id),
