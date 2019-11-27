@@ -47,10 +47,6 @@ class CartService
             'price' => $product->getPrice(),
         ];
 
-        if (array_key_exists($product->getId(), $cart)) {
-            $entity['quantity'] += $cart[$product->getId()]['quantity'];
-        }
-
         $cart[$product->getId()] = $product;
 
         $this->session->set('cart', $cart);
@@ -59,7 +55,7 @@ class CartService
     /**
      * @return SessionInterface
      */
-    public function getCartProducts(): SessionInterface
+    public function getCartProducts(): array
     {
         return $this->session->get('cart');
     }
@@ -92,9 +88,6 @@ class CartService
         return empty($this->session->get('cart'));
     }
 
-    /**
-     * @param Product $product
-     */
     public function removeProduct(Product $product)
     {
         $cart = $this->session->get('cart');
@@ -108,6 +101,7 @@ class CartService
 
     /**
      * @param $id
+     *
      * @return Product|null
      */
     public function getProduct($id): ?Product
@@ -136,12 +130,6 @@ class CartService
     {
         $cart = $this->session->get('cart');
 
-        $count = 0;
-
-        foreach ($cart as $product) {
-            $count += $product['quantity'];
-        }
-
-        return $count;
+        return count($cart);
     }
 }
