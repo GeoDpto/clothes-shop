@@ -10,4 +10,9 @@ interface ContactServiceInterface
      * @param array $data
      */
     public function insertContactData(array $data): void;
+
+    /**
+     * @param array $data
+     */
+    public function sendMail(array $data): void;
 }
