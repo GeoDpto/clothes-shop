@@ -15,5 +15,9 @@ category:
     controller: App\Controller\CategoryController:showCategory
 
 contact:
-    path: /contact
+    path: /contact/
     controller: App\Controller\ContactController:show
+
+cart:
+    path: /cart/
+    controller: App\Controller\CartController:showCart
