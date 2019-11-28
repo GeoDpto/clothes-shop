@@ -10,7 +10,7 @@ class CheckoutController extends AbstractController
     /**
      * @Route("/checkout", name="checkout")
      */
-    public function index()
+    public function checkout()
     {
         return $this->render('checkout/checkout.html.twig', [
             'controller_name' => 'CheckoutController',
