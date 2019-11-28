@@ -60,14 +60,14 @@
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                                {% for product in products %}
+                                <li><a href="{{ path('product', {id: product.id}) }}">{{ product.title }}  <span class="last">${{ product.price }}</span></a>
+                                    <span>x 01</span>
+                                </li>
+                                {% endfor %}
                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">Subtotal <span>$2160.00</span></a></li>
-                                <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
-                                <li><a href="#">Total <span>$2210.00</span></a></li>
+                                <li><a href="#">Total <span>${{ totalPrice }}</span></a></li>
                             </ul>
                             <div class="payment_item">
                                 <div class="radion_btn">
