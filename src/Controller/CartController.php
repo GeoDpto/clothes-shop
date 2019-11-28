@@ -30,6 +30,7 @@ class CartController extends AbstractController
     public function showCart(): Response
     {
         return $this->render('cart/cart.html.twig', [
+            'products' => $this->cartService->getCartProducts(),
         ]);
     }
 

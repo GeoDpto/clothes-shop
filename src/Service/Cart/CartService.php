@@ -53,7 +53,7 @@ class CartService
     }
 
     /**
-     * @return SessionInterface
+     * @return array
      */
     public function getCartProducts(): array
     {
@@ -68,7 +68,7 @@ class CartService
         $total = 0;
 
         foreach ($this->session->get('cart') as $product) {
-            $total += $product['product']->getPrice() * $product['quantity'];
+            $total += $product['product']->getPrice();
         }
     }
 
