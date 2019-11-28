@@ -68,8 +68,10 @@ class CartService
         $total = 0;
 
         foreach ($this->session->get('cart') as $product) {
-            $total += $product['product']->getPrice();
+            $total += $product->getPrice();
         }
+
+        return $total;
     }
 
     /**
