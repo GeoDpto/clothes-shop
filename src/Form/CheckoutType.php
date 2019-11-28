@@ -2,23 +2,51 @@
 
 namespace App\Form;
 
+use App\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CheckoutType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('field_name')
+            ->add('firstName', TextType::class)
+            ->add('lastName', TextType::class)
+            ->add('companyName', TextType::class, ['required' => false])
+            ->add('phone', TelType::class)
+            ->add('email', EmailType::class)
+            ->add('country', ChoiceType::class, [
+                'choices' => [
+                    'Ukraine' => 'Ukraine',
+                    'Poland' => 'Poland',
+                    'Germany' => 'Germany',
+                ],
+            ])
+            ->add('firstAddress', TextType::class)
+            ->add('secondAddress', TextType::class, ['required' => false])
+            ->add('city', TextType::class)
+            ->add('postcode', TextType::class)
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Customer::class,
         ]);
     }
 }
