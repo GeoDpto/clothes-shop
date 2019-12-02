@@ -5791,3 +5791,8 @@ label {
     color: #ffba00; }
 
 /*# sourceMappingURL=main.css.map */
+
+label.required:before {
+  content: "* ";
+  color:red;
+}
