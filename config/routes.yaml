@@ -21,3 +21,7 @@ contact:
 cart:
     path: /cart/
     controller: App\Controller\CartController:showCart
+
+checkout:
+    path: /checkout/
+    controller: App\Controller\CheckoutController:checkout

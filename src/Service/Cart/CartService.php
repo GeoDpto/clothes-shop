@@ -90,41 +90,6 @@ class CartService
         return empty($this->session->get('cart'));
     }
 
-    public function removeProduct(Product $product)
-    {
-        $cart = $this->session->get('cart');
-
-        if ($this->getProduct($product->getId())) {
-            unset($cart[$product->getId()]);
-
-            $this->session->set('cart', $cart);
-        }
-    }
-
-    /**
-     * @param $id
-     *
-     * @return Product|null
-     */
-    public function getProduct($id): ?Product
-    {
-        $cart = $this->session->get('cart');
-
-        if (array_key_exists($id, $cart)) {
-            return $cart[$id]['meal'];
-        }
-
-        return null;
-    }
-
-    /**
-     * @return float
-     */
-    public function getTax(): float
-    {
-        return $this->getTotalPrice() * $this->taxRate / 100;
-    }
-
     /**
      * @return int
      */

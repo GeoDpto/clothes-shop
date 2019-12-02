@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="margin-top:100px;"></div>
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Billing Details</h3>
+                        {{ form_start(checkout) }}
+                            {{ form_widget(checkout) }}
+                            <button type="submit" class="primary-btn" href="#">Confirm order</button>
+                        {{ form_end(checkout) }}
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li><a href="#">Product <span>Total</span></a></li>
+                                {% for product in products %}
+                                <li><a href="{{ path('product', {id: product.id}) }}">{{ product.title }}  <span class="last">${{ product.price }}</span></a>
+                                    <span>x 01</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a href="#">Total <span>${{ totalPrice }}</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

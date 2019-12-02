@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Product\ProductRepository")
  */
 class Product
 {
@@ -55,6 +55,11 @@ class Product
     private $price;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Order", mappedBy="productId")
+     */
+    private $orders;
+
+    /**
      * Product constructor.
      * @param string $title
      */
@@ -62,6 +67,8 @@ class Product
     {
         $this->title = $title;
         $this->images = new ArrayCollection();
+        $this->orderProducts = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +175,34 @@ class Product
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->addProductId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            $order->removeProductId($this);
+        }
 
         return $this;
     }
