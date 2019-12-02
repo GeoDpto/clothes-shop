@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\Customer\CustomerRepository")
@@ -20,10 +21,22 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long.",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters."
+     * )
      */
     private $firstName;
 
     /**
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Your second name must be at least {{ limit }} characters long.",
+     *      maxMessage = "Your second name cannot be longer than {{ limit }} characters."
+     * )
      * @ORM\Column(type="string", length=50)
      */
     private $lastName;
@@ -34,21 +47,43 @@ class Customer
     private $companyName;
 
     /**
+     * @Assert\Length(
+     *     min = 8,
+     *     max = 20,
+     *     minMessage = "Your phone number must be at least {{ limit }} characters long.",
+     *     maxMessage = "Your phone number annot be longer than {{ limit }} characters."
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[0-9]*$/",
+     *     message="number_only"
+     * )
      * @ORM\Column(type="string", length=10)
      */
     private $phone;
 
     /**
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     *);
      * @ORM\Column(type="string", length=100)
      */
     private $email;
 
     /**
+     * @Assert\Choice(
+     *     {"Ukraine", "Germany", "Poland"},
+     *     message = "Invalid value of choice."
+     *     )
+     *
      * @ORM\Column(type="string", length=50)
      */
     private $country;
 
     /**
+     * @Assert\NotBlank(
+     *     message = "Value can not be a null."
+     * )
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $firstAddress;
@@ -59,11 +94,24 @@ class Customer
     private $secondAddress;
 
     /**
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 50,
+     *     minMessage = "Your city must be at least {{ limit }} characters long.",
+     *     maxMessage = "Your city annot be longer than {{ limit }} characters."
+     *
+     * )
+     *
      * @ORM\Column(type="string", length=100)
      */
     private $city;
 
     /**
+     * @Assert\Type(
+     *     type = "integer",
+     *     message = "Value is not valid."
+     * )
+     *
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $postcode;

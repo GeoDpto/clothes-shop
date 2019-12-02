@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ContactController extends AbstractController
 {
@@ -19,15 +20,19 @@ class ContactController extends AbstractController
      * @param \Swift_Mailer $mailer
      * @return Response
      */
-    public function show(Request $request, ContactServiceInterface $contactService, \Swift_Mailer $mailer): Response
+    public function show(Request $request, ContactServiceInterface $contactService, \Swift_Mailer $mailer, ValidatorInterface $validator): Response
     {
         $form = $this->createForm(ContactType::class);
 
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            $errors = $validator->validate($data);
 
+            dd($data);
             $contactService->sendMail($data);
 
             $contactService->insertContactData($data);
