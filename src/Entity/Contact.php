@@ -20,10 +20,10 @@ class Contact
     /**
     /**
      * @Assert\Length(
-     *      min = 2,
-     *      max = 50,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long.",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters."
+     *      min = 3,
+     *      max = 100,
+     *      minMessage = "Your name must be at least {{ limit }} characters long.",
+     *      maxMessage = "Your name cannot be longer than {{ limit }} characters."
      * )
      *
      * @ORM\Column(type="string", length=255)
@@ -47,8 +47,8 @@ class Contact
      * @Assert\Length(
      *      min = 10,
      *      max = 500,
-     *      minMessage = "Your first name must be at least {{ limit }} characters long.",
-     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters."
+     *      minMessage = "Your message must be at least {{ limit }} characters long.",
+     *      maxMessage = "Your message cannot be longer than {{ limit }} characters."
      * )
      * @ORM\Column(type="string", length=255)
      */
