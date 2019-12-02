@@ -18,6 +18,7 @@ class ContactController extends AbstractController
      * @param Request $request
      * @param ContactServiceInterface $contactService
      * @param \Swift_Mailer $mailer
+     * @param ValidatorInterface $validator
      * @return Response
      */
     public function show(Request $request, ContactServiceInterface $contactService, \Swift_Mailer $mailer, ValidatorInterface $validator): Response
@@ -26,13 +27,9 @@ class ContactController extends AbstractController
 
         $form->handleRequest($request);
 
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $errors = $validator->validate($data);
 
-            dd($data);
             $contactService->sendMail($data);
 
             $contactService->insertContactData($data);

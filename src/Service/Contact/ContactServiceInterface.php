@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace App\Service\Contact;
 
+use App\Entity\Contact;
+
 interface ContactServiceInterface
 {
     /**
-     * @param array $data
+     * @param Contact $contact
      */
-    public function insertContactData(array $data): void;
+    public function insertContactData(Contact $contact): void;
 
     /**
-     * @param array $data
+     * @param Contact $data
      */
-    public function sendMail(array $data): void;
+    public function sendMail(Contact $data): void;
 }

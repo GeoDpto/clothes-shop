@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Repository\Contact;
 
+use App\Entity\Contact;
+
 interface ContactRepositoryInterface
 {
     /**
-     * @param array $data
+     * @param Contact $contact
      */
-    public function insertContactData(array $data): void;
+    public function insertContactData(Contact $contact): void;
 }

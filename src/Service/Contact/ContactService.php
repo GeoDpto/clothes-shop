@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Contact;
 
+use App\Entity\Contact;
 use App\Repository\Contact\ContactRepositoryInterface;
 use Twig\Environment;
 
@@ -39,15 +40,15 @@ class ContactService implements ContactServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function insertContactData(array $data): void
+    public function insertContactData(Contact $contact): void
     {
-        $this->contactRepository->insertContactData($data);
+        $this->contactRepository->insertContactData($contact);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function sendMail(array $data): void
+    public function sendMail(Contact $contact): void
     {
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('send@example.com')
@@ -55,10 +56,10 @@ class ContactService implements ContactServiceInterface
             ->setBody(
                 $this->templating->render('email/contact_email.html.twig',
                     [
-                        'name' => $data['name'],
-                        'email' => $data['email'],
-                        'subject' => $data['subject'],
-                        'message' => $data['message'],
+                        'name' => $contact->getName(),
+                        'email' => $contact->getEmail(),
+                        'subject' => $contact->getSubject(),
+                        'message' => $contact->getMessage(),
                     ]
                 ),
                 'text/html'
