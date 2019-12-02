@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Table(name="`order`")
  */
 class Order
 {
@@ -89,24 +90,24 @@ class Order
     /**
      * @return Collection|Product[]
      */
-    public function getProductId(): Collection
+    public function getProduct(): Collection
     {
         return $this->productId;
     }
 
-    public function addProductId(Product $productId): self
+    public function addProduct(Product $product): self
     {
-        if (!$this->productId->contains($productId)) {
-            $this->productId[] = $productId;
+        if (!$this->productId->contains($product)) {
+            $this->productId[] = $product;
         }
 
         return $this;
     }
 
-    public function removeProductId(Product $productId): self
+    public function removeProduct(Product $product): self
     {
-        if ($this->productId->contains($productId)) {
-            $this->productId->removeElement($productId);
+        if ($this->productId->contains($product)) {
+            $this->productId->removeElement($product);
         }
 
         return $this;

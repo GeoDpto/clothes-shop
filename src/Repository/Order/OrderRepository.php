@@ -19,32 +19,31 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    // /**
-    //  * @return Order[] Returns an array of Order objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param array $data
+     * @param string $mail
+     * @param array $checkoutProducts
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function addOrder(array $data, string $mail, array $checkoutProducts): void
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $em = $this->getEntityManager();
+        $customer = $em->getRepository('App:Customer')->findOneBy(['email' => $mail]);
 
-    /*
-    public function findOneBySomeField($value): ?Order
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+        $order = new Order();
+
+        $order->setCustomer($customer)
+            ->setDate(new \DateTimeImmutable())
         ;
+
+        foreach ($checkoutProducts as $checkoutProduct) {
+            $product = $em->getRepository('App:Product')->findOneBy(['id' => $checkoutProduct->getId()]);
+            $order->addProduct($product);
+        }
+
+        $em->persist($order);
+
+        $em->flush();
     }
-    */
 }
