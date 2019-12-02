@@ -25,3 +25,7 @@ cart:
 checkout:
     path: /checkout/
     controller: App\Controller\CheckoutController:checkout
+
+admin_login:
+    path: /admin/
+    controller: App\Controller\AdminAuthController:auth
