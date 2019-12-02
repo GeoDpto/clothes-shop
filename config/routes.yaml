@@ -27,5 +27,9 @@ checkout:
     controller: App\Controller\CheckoutController:checkout
 
 admin_login:
-    path: /admin/
-    controller: App\Controller\AdminAuthController:auth
+    path: /admin/login/
+    controller: App\Controller\AdminAuthController:login
+
+admin_logout:
+        path: /admin/logout/
+        controller: App\Controller\AdminAuthController:logout
