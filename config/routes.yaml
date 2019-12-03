@@ -31,5 +31,9 @@ admin_login:
     controller: App\Controller\AdminAuthController:login
 
 admin_logout:
-        path: /admin/logout/
-        controller: App\Controller\AdminAuthController:logout
+    path: /admin/logout/
+    controller: App\Controller\AdminAuthController:logout
+
+admin_index:
+    path: /admin/
+    controller: App\Controller\AdminDefaultController:index

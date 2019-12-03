@@ -18,9 +18,9 @@ class AdminAuthController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-/*        if ($this->getUser()) {
-            return $this->redirectToRoute('admin_panel');
-        }*/
+        if ($this->getUser()) {
+            return $this->redirectToRoute('admin_index');
+        }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
