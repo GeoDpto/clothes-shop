@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
  */
 class User implements UserInterface
 {
@@ -16,142 +13,80 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $login;
-
-    /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $passwordHash;
-
     /**
      * @ORM\Column(type="json")
      */
-    private $role = [];
-
+    private $roles = [];
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $passwordHash;
+    public function __construct(string $email)
+    {
+        $this->email = $email;
+    }
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getLogin(): ?string
-    {
-        return $this->login;
-    }
-
-    public function setLogin(string $login): self
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPasswordHash(): ?string
-    {
-        return $this->passwordHash;
-    }
-
-    public function setPasswordHash(string $passwordHash): self
-    {
-        $this->passwordHash = $passwordHash;
-
-        return $this;
-    }
-
-    public function getRole(): ?array
-    {
-        return $this->role;
-    }
-
-    public function setRole(array $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
     /**
-     * Returns the roles granted to the user.
+     * A visual identifier that represents this user.
      *
-     *     public function getRoles()
-     *     {
-     *         return ['ROLE_USER'];
-     *     }
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return (Role|string)[] The user roles
+     * @see UserInterface
      */
-    public function getRoles()
+    public function getUsername(): string
     {
-        // TODO: Implement getRoles() method.
+        return (string) $this->email;
     }
-
     /**
-     * Returns the password used to authenticate the user.
-     *
-     * This should be the encoded password. On authentication, a plain-text
-     * password will be salted, encoded, and then compared to this value.
-     *
-     * @return string|null The encoded password if any
+     * @see UserInterface
      */
-    public function getPassword()
+    public function getRoles(): array
     {
-        // TODO: Implement getPassword() method.
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        return \array_unique($roles);
     }
-
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        return $this;
+    }
     /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->passwordHash;
+    }
+    public function setPasswordHash(string $hash): self
+    {
+        $this->passwordHash = $hash;
+        return $this;
+    }
+    /**
+     * @see UserInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
-
     /**
-     * Returns the username used to authenticate the user.
-     *
-     * @return string The username
-     */
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
+     * @see UserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

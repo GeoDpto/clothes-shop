@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Security;
@@ -22,23 +23,55 @@ class AdminAuthAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;
 
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
+
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
     private $urlGenerator;
+
+    /**
+     * @var CsrfTokenManagerInterface
+     */
     private $csrfTokenManager;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager)
+    /**
+     * AdminAuthAuthenticator constructor.
+     * @param EntityManagerInterface $entityManager
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param CsrfTokenManagerInterface $csrfTokenManager
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
+    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
     public function supports(Request $request)
     {
         return 'app_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
+    /**
+     * @param Request $request
+     * @return array|mixed
+     */
     public function getCredentials(Request $request)
     {
         $credentials = [
@@ -54,6 +87,12 @@ class AdminAuthAuthenticator extends AbstractFormLoginAuthenticator
         return $credentials;
     }
 
+    /**
+     * @param mixed $credentials
+     *
+     * @param UserProviderInterface $userProvider
+     * @return object|UserInterface|null
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
@@ -71,23 +110,40 @@ class AdminAuthAuthenticator extends AbstractFormLoginAuthenticator
         return $user;
     }
 
+    /**
+     * @param mixed $credentials
+     *
+     * @param UserInterface $user
+     * @return bool|void
+     *
+     * @throws \Exception
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // Check the user's password or other credentials and return true or false
-        // If there are no credentials to check, you can just return true
-        throw new \Exception('TODO: check the credentials inside '.__FILE__);
+        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
+    /**
+     * @param Request $request
+     * @param TokenInterface $token
+     * @param string $providerKey
+     *
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response|null
+     *
+     * @throws \Exception
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('index'));
     }
 
+    /**
+     * @return string
+     */
     protected function getLoginUrl()
     {
         return $this->urlGenerator->generate('app_login');
