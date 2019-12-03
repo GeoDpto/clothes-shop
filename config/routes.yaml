@@ -26,13 +26,13 @@ checkout:
     path: /checkout/
     controller: App\Controller\CheckoutController:checkout
 
-admin_login:
-    path: /admin/login/
-    controller: App\Controller\AdminAuthController:login
+login:
+    path: /login/
+    controller: App\Controller\AuthController:login
 
-admin_logout:
-    path: /admin/logout/
-    controller: App\Controller\AdminAuthController:logout
+logout:
+    path: /logout/
+    controller: App\Controller\AuthController:logout
 
 admin_index:
     path: /admin/

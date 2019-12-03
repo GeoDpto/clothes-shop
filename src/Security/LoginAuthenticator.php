@@ -17,7 +17,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class AdminAuthAuthenticator extends AbstractFormLoginAuthenticator
+class LoginAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;
     private $entityManager;
@@ -33,7 +33,7 @@ class AdminAuthAuthenticator extends AbstractFormLoginAuthenticator
     }
     public function supports(Request $request)
     {
-        return 'admin_login' === $request->attributes->get('_route')
+        return 'login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
     public function getCredentials(Request $request)
@@ -74,10 +74,10 @@ class AdminAuthAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-        return new RedirectResponse($this->urlGenerator->generate('index'));
+        return new RedirectResponse($this->urlGenerator->generate('admin_index'));
     }
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('admin_login');
+        return $this->urlGenerator->generate('login');
     }
 }

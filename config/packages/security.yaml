@@ -18,9 +18,9 @@ security:
             anonymous: true
             guard:
                 authenticators:
-                    - App\Security\AdminAuthAuthenticator
+                    - App\Security\LoginAuthenticator
             logout:
-                path: admin_logout
+                path: logout
                 # where to redirect after logout
                 # target: app_any_route
 
