@@ -25,3 +25,15 @@ cart:
 checkout:
     path: /checkout/
     controller: App\Controller\CheckoutController:checkout
+
+login:
+    path: /login/
+    controller: App\Controller\AuthController:login
+
+logout:
+    path: /logout/
+    controller: App\Controller\AuthController:logout
+
+admin_index:
+    path: /admin/
+    controller: App\Controller\AdminDefaultController:index
