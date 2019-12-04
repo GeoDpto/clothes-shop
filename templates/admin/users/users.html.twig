@@ -1,0 +1,13 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+    {% for user in users %}
+        <div>
+            <h4>{{ user.email }}</h4>
+            <a href="#">Обновить</a>
+            <a href="#">Удалить</a>
+        </div>
+        <hr>
+    {% endfor %}
+    <h3><a href="#">Добавить</a></h3>
+{% endblock %}

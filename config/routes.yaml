@@ -37,3 +37,7 @@ logout:
 admin_index:
     path: /admin/
     controller: App\Controller\AdminDefaultController:index
+
+admin_users:
+    path: /admin/users/
+    controller: App\Controller\AdminUsersController:show
