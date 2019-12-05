@@ -38,6 +38,11 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    /**
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     public function update(int $id, Request $request): Response
     {
         $user = $this->adminUserService->getById($id);
@@ -59,6 +64,10 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function create(Request $request): Response
     {
         $form = $this->createForm(CreateUserType::class);
@@ -77,6 +86,10 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    /**
+     * @param int $id
+     * @return Response
+     */
     public function delete(int $id): Response
     {
         $this->successMessage = true;
