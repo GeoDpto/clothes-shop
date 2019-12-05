@@ -37,3 +37,19 @@ logout:
 admin_index:
     path: /admin/
     controller: App\Controller\AdminDefaultController:index
+
+admin_users:
+    path: /admin/users/
+    controller: App\Controller\AdminUserController:show
+
+admin_user_update:
+    path: /admin/users/user-{id}/
+    controller: App\Controller\AdminUserController:update
+
+admin_user_create:
+    path: /admin/users/create
+    controller: App\Controller\AdminUserController:create
+
+admin_user_delete:
+    path: /admin/users/delete/{id}/
+    controller: App\Controller\AdminUserController:delete
