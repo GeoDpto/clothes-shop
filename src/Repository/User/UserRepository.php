@@ -32,8 +32,6 @@ class UserRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $id
-     * @return User
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getById(int $id): User
@@ -49,7 +47,6 @@ class UserRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param User $user
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
@@ -58,6 +55,20 @@ class UserRepository extends ServiceEntityRepository
         $em = $this->getEntityManager();
 
         $em->persist($user);
+
+        $em->flush();
+    }
+
+    /**
+     * @param User $user
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function deleteById(User $user): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->remove($user);
 
         $em->flush();
     }

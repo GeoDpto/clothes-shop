@@ -49,3 +49,7 @@ admin_user_update:
 admin_user_create:
     path: /admin/users/create
     controller: App\Controller\AdminUserController:create
+
+admin_user_delete:
+    path: /admin/users/delete/{id}/
+    controller: App\Controller\AdminUserController:delete

@@ -34,6 +34,7 @@ class AdminUserController extends AbstractController
     {
         return $this->render('admin/users/users.html.twig', [
             'users' => $this->adminUserService->showUsers(),
+            'success' => $this->successMessage,
         ]);
     }
 
@@ -74,5 +75,14 @@ class AdminUserController extends AbstractController
             'createUserForm' => $form->createView(),
             'success' => $this->successMessage,
         ]);
+    }
+
+    public function delete(int $id): Response
+    {
+        $this->successMessage = true;
+
+        $this->adminUserService->deleteById($id);
+
+        return $this->forward('App\Controller\AdminUserController::show', []);
     }
 }

@@ -1,11 +1,16 @@
 {% extends 'admin/base_admin.html.twig' %}
 
 {% block body %}
+    {% if success %}
+        <div style="background:greenyellow; padding:20px;">
+            <h1>User was successfully deleted!</h1>
+        </div>
+    {% endif %}
     {% for user in users %}
         <div id="user-{{ user.id }}">
             <h4>{{ user.email }}</h4>
             <a href="{{ path('admin_user_update', {id: user.id}) }}">Обновить</a>
-            <a href="#">Удалить</a>
+            <a href="{{ path('admin_user_delete', {id: user.id}) }}">Удалить</a>
         </div>
         <hr>
     {% endfor %}

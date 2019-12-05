@@ -7,6 +7,7 @@ namespace App\Service\User;
 use App\Entity\User;
 use App\Exception\EntityNotFoundException;
 use App\Exception\UserExistsException;
+use App\Exception\UserNotExistsException;
 use App\Repository\User\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -82,10 +83,21 @@ class AdminUserService implements AdminUserServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @param int $id
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function deleteById(int $id): void
     {
-        // TODO: Implement deleteById() method.
+        $user = $this->getById($id);
+
+        if (!$user) {
+            throw new UserNotExistsException($id);
+        }
+
+        $this->userRepository->deleteById($user);
     }
 
     /**

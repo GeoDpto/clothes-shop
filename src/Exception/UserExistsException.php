@@ -13,6 +13,6 @@ class UserExistsException extends \DomainException
      */
     public function __construct(string $email, \Throwable $previous = null)
     {
-        parent::__construct(sprintf('User with email %s exists.', $email), 0, $previous);
+        parent::__construct(sprintf('User with email %s is exists.', $email), 0, $previous);
     }
 }
