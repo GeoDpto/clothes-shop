@@ -19,6 +19,9 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * @return array
+     */
     public function getUsers(): array
     {
         $query = $this->createQueryBuilder('u')
@@ -43,5 +46,19 @@ class UserRepository extends ServiceEntityRepository
         ;
 
         return $query->getOneOrNullResult();
+    }
+
+    /**
+     * @param User $user
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function addUser(User $user): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->persist($user);
+
+        $em->flush();
     }
 }

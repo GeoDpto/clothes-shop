@@ -6,6 +6,7 @@ namespace App\Service\User;
 
 use App\Entity\User;
 use App\Exception\EntityNotFoundException;
+use App\Exception\UserExistsException;
 use App\Repository\User\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -27,9 +28,6 @@ class AdminUserService implements AdminUserServiceInterface
 
     /**
      * AdminUserService constructor.
-     * @param UserRepository $userRepository
-     * @param EntityManagerInterface $entityManager
-     * @param UserPasswordEncoderInterface $userPasswordEncoder
      */
     public function __construct(UserRepository $userRepository,
                                 EntityManagerInterface $entityManager,
@@ -67,9 +65,19 @@ class AdminUserService implements AdminUserServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function addUser(User $user): void
+    public function addUser(array $data): void
     {
-        // TODO: Implement addUser() method.
+        if ($this->entityManager->getRepository('App:User')->findOneBy(['email' => $data['email']])) {
+            throw new UserExistsException($data['email']);
+        }
+
+        $user = new User($data['email']);
+
+        $user->setRoles((array) $data['roles'])
+             ->setPasswordHash($this->userPasswordEncoder->encodePassword($user, $data['passwordHash']))
+        ;
+
+        $this->userRepository->addUser($user);
     }
 
     /**

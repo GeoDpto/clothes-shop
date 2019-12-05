@@ -1,9 +1,12 @@
 {% extends 'admin/base_admin.html.twig' %}
 
 {% block body %}
-
+    {% if success %}
+        <div style="background:greenyellow; padding:20px;">
+            <h1>User was successfully created!</h1>
+        </div>
+    {% endif %}
     <h1>On this page you may to create a new user.</h1>
-
     <div class="row">
         <div class="col-lg-6 col-md-10 col-xs-12">
             {{ form_start(createUserForm) }}

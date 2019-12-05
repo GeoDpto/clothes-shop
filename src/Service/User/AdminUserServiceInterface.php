@@ -14,14 +14,15 @@ interface AdminUserServiceInterface
     public function showUsers(): array;
 
     /**
+     * @param int $id
      * @return User
      */
     public function getById(int $id): User;
 
     /**
-     * @param User $user
+     * @param array $data
      */
-    public function addUser(User $user): void;
+    public function addUser(array $data): void;
 
     /**
      * @param int $id

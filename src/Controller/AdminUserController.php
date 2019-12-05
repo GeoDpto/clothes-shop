@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminUserController extends AbstractController
 {
     /**
+     * @var bool
+     */
+    private $successMessage = false;
+
+    /**
      * @var AdminUserServiceInterface
      */
     private $adminUserService;
@@ -34,8 +39,6 @@ class AdminUserController extends AbstractController
 
     public function update(int $id, Request $request): Response
     {
-        $successMessage = false;
-
         $user = $this->adminUserService->getById($id);
 
         $form = $this->createForm(EditUserType::class);
@@ -43,14 +46,14 @@ class AdminUserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $successMessage = true;
+            $this->successMessage = true;
 
             $this->adminUserService->updateUser($id, $form->getData());
         }
 
         return $this->render('admin/users/update.html.twig', [
                 'user' => $user,
-                'success' => $successMessage,
+                'success' => $this->successMessage,
                 'editUserForm' => $form->createView(),
         ]);
     }
@@ -62,11 +65,14 @@ class AdminUserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
+            $this->successMessage = true;
+
+            $this->adminUserService->addUser($form->getData());
         }
 
         return $this->render('admin/users/create.html.twig', [
             'createUserForm' => $form->createView(),
+            'success' => $this->successMessage,
         ]);
     }
 }
