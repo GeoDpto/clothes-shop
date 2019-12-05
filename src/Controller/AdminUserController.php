@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\CreateUserType;
 use App\Form\EditUserType;
 use App\Service\User\AdminUserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,11 +32,6 @@ class AdminUserController extends AbstractController
         ]);
     }
 
-    /**
-     * @param int $id
-     * @param Request $request
-     * @return Response
-     */
     public function update(int $id, Request $request): Response
     {
         $successMessage = false;
@@ -61,8 +57,16 @@ class AdminUserController extends AbstractController
 
     public function create(Request $request): Response
     {
-        return $this->render('admin/users/create.html.twig', [
+        $form = $this->createForm(CreateUserType::class);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($form->getData());
+        }
+
+        return $this->render('admin/users/create.html.twig', [
+            'createUserForm' => $form->createView(),
         ]);
     }
 }

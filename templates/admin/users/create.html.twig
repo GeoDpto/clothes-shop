@@ -4,4 +4,16 @@
 
     <h1>On this page you may to create a new user.</h1>
 
+    <div class="row">
+        <div class="col-lg-6 col-md-10 col-xs-12">
+            {{ form_start(createUserForm) }}
+                {{ form_row(createUserForm.email) }}
+                {{ form_row(createUserForm.roles) }}
+                {{ form_row(createUserForm.passwordHash.first) }}
+                {{ form_row(createUserForm.passwordHash.second) }}
+            <button type="submit">Create user</button>
+            {{ form_end(createUserForm) }}
+        </div>
+    </div>
+
 {% endblock %}
