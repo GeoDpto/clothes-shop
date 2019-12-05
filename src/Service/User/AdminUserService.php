@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Exception\EntityNotFoundException;
 use App\Repository\User\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminUserService implements AdminUserServiceInterface
 {
@@ -19,16 +20,24 @@ class AdminUserService implements AdminUserServiceInterface
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $userPasswordEncoder;
 
     /**
      * AdminUserService constructor.
      * @param UserRepository $userRepository
      * @param EntityManagerInterface $entityManager
+     * @param UserPasswordEncoderInterface $userPasswordEncoder
      */
-    public function __construct(UserRepository $userRepository, EntityManagerInterface $entityManager)
+    public function __construct(UserRepository $userRepository,
+                                EntityManagerInterface $entityManager,
+                                UserPasswordEncoderInterface $userPasswordEncoder)
     {
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
+        $this->userPasswordEncoder = $userPasswordEncoder;
     }
 
     /**
@@ -83,7 +92,7 @@ class AdminUserService implements AdminUserServiceInterface
         $user->setEmail($data['email']);
 
         if (!empty($data['password'])) {
-            $user->setPasswordHash(\bin2hex($data['email']));
+            $user->setPasswordHash($this->userPasswordEncoder->encodePassword($user, $data['password']));
         }
 
         $this->entityManager->flush();
