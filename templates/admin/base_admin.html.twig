@@ -21,16 +21,24 @@
     <link href="{{ asset('admin/assets/layouts/layout/css/layout.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/assets/layouts/layout/css/themes/darkblue.min.css') }}" rel="stylesheet" type="text/css" id="style_color" />
     <link href="{{ asset('admin/assets/layouts/layout/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
-</head>
+
     {% block stylesheets %}
 
     {% endblock %}
 </head>
 <body>
 {% include 'admin/_header_admin.html.twig' %}
-{% block body %}
+<div class="clearfix"> </div>
+<div class="page-container">
+{% include 'admin/_sidebar.html.twig' %}
+    <div class="page-content-wrapper">
+        <div class="page-content">
+        {% block body %}
 
-{% endblock %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
 <script src="{{ asset('admin/assets/global/plugins/respond.min.js') }}"></script>
 <script src="{{ asset('admin/assets/global/plugins/excanvas.min.js') }}"></script>
 <script src="{{ asset('admin/assets/global/plugins/jquery.min.js') }}assets/global/plugins/jquery.min.js" type="text/javascript"></script>
