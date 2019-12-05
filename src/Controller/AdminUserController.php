@@ -31,6 +31,11 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+    /**
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     public function update(int $id, Request $request): Response
     {
         $successMessage = false;
@@ -51,6 +56,13 @@ class AdminUserController extends AbstractController
                 'user' => $user,
                 'success' => $successMessage,
                 'editUserForm' => $form->createView(),
+        ]);
+    }
+
+    public function create(Request $request): Response
+    {
+        return $this->render('admin/users/create.html.twig', [
+
         ]);
     }
 }
