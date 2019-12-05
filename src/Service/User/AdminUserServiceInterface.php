@@ -27,4 +27,10 @@ interface AdminUserServiceInterface
      * @param int $id
      */
     public function deleteById(int $id): void;
+
+    /**
+     * @param int $id
+     * @param array $data
+     */
+    public function updateUser(int $id, array $data): void;
 }

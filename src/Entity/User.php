@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
  */
@@ -26,18 +29,27 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $passwordHash;
+
     public function __construct(string $email)
     {
         $this->email = $email;
     }
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
     public function getEmail(): string
     {
         return $this->email;
     }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -47,6 +59,7 @@ class User implements UserInterface
     {
         return (string) $this->email;
     }
+
     /**
      * @see UserInterface
      */
@@ -57,11 +70,14 @@ class User implements UserInterface
 
         return \array_unique($roles);
     }
+
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
         return $this;
     }
+
     /**
      * @see UserInterface
      */
@@ -69,11 +85,14 @@ class User implements UserInterface
     {
         return (string) $this->passwordHash;
     }
+
     public function setPasswordHash(string $hash): self
     {
         $this->passwordHash = $hash;
+
         return $this;
     }
+
     /**
      * @see UserInterface
      */
@@ -81,6 +100,7 @@ class User implements UserInterface
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
+
     /**
      * @see UserInterface
      */

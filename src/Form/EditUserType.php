@@ -21,15 +21,10 @@ class EditUserType extends AbstractType
                 'constraints' => new Email(['message' => "The email '{{ value }}' is not a valid email."]),
             ])
             ->add('password', RepeatedType::class, [
+                'required' => false,
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Enter new password'],
                 'second_options' => ['label' => 'Repeat password'],
-                'constraints' => new Length([
-                    'min' => 8,
-                    'max' => 20,
-                    'minMessage' => 'Your password must be at least {{ limit }} characters long.',
-                    'maxMessage' => 'Your password cannot be longer than {{ limit }} characters.',
-                ]),
             ])
         ;
     }

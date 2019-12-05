@@ -44,7 +44,7 @@ class AdminUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $successMessage = true;
 
-
+            $this->adminUserService->updateUser($id, $form->getData());
         }
 
         return $this->render('admin/users/update.html.twig', [
