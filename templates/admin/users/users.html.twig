@@ -2,9 +2,9 @@
 
 {% block body %}
     {% for user in users %}
-        <div>
+        <div id="user-{{ user.id }}">
             <h4>{{ user.email }}</h4>
-            <a href="#">Обновить</a>
+            <a href="{{ path('admin_user_update', {id: user.id}) }}">Обновить</a>
             <a href="#">Удалить</a>
         </div>
         <hr>

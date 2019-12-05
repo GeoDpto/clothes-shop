@@ -40,4 +40,8 @@ admin_index:
 
 admin_users:
     path: /admin/users/
-    controller: App\Controller\AdminUsersController:show
+    controller: App\Controller\AdminUserController:show
+
+admin_user_update:
+    path: /admin/users/user-{id}/
+    controller: App\Controller\AdminUserController:update

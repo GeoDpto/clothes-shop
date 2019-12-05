@@ -19,9 +19,6 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    /**
-     * @return array
-     */
     public function getUsers(): array
     {
         $query = $this->createQueryBuilder('u')
@@ -29,5 +26,22 @@ class UserRepository extends ServiceEntityRepository
             ;
 
         return $query->getResult();
+    }
+
+    /**
+     * @param int $id
+     * @return User
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getById(int $id): User
+    {
+        $query = $this->createQueryBuilder('u')
+        ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults(1)
+            ->getQuery()
+        ;
+
+        return $query->getOneOrNullResult();
     }
 }

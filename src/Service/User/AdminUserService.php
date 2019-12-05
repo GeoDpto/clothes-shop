@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service\User;
 
 use App\Entity\User;
+use App\Exception\EntityNotFoundException;
 use App\Repository\User\UserRepository;
 
 class AdminUserService implements AdminUserServiceInterface
@@ -33,10 +34,18 @@ class AdminUserService implements AdminUserServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getById(int $id): User
     {
-        // TODO: Implement getById() method.
+        $user = $this->userRepository->getById($id);
+
+        if (!$user) {
+            throw new EntityNotFoundException('user');
+        }
+
+        return $user;
     }
 
     /**
