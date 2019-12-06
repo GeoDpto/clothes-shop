@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\CreateCategoryType;
 use App\Form\EditCategoryType;
 use App\Service\Category\CategoryAdminServiceInterface;
 use App\Service\Category\CategoryServiceInterface;
@@ -70,5 +71,22 @@ class AdminCategoryController extends AbstractController
         $this->categoryAdminService->deleteCategory($id);
 
         return $this->forward('App\Controller\AdminCategoryController::show', []);
+    }
+
+    public function create(Request $request): Response
+    {
+        $form = $this->createForm(CreateCategoryType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->success = true;
+            $this->categoryAdminService->createCategory($form->getData());
+        }
+
+        return $this->render('admin/category/create.html.twig', [
+            'success' => $this->success,
+            'createCategoryForm' => $form->createView(),
+        ]);
     }
 }

@@ -103,4 +103,13 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
 
         $em->flush();
     }
+
+    public function createCategory(Category $category): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->persist($category);
+
+        $em->flush();
+    }
 }
