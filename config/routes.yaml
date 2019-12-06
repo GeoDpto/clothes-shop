@@ -55,5 +55,9 @@ admin_user_delete:
     controller: App\Controller\AdminUserController:delete
 
 admin_categories:
-    path: admin/categories/
+    path: /admin/categories/
     controller: App\Controller\AdminCategoryController:show
+
+admin_category_update:
+    path: /admin/category/{slug}
+    controller: App\Controller\AdminCategoryController:update

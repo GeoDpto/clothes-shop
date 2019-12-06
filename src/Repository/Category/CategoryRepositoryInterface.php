@@ -29,4 +29,5 @@ interface CategoryRepositoryInterface
      * @return Category
      */
     public function getBySlug(string $slug): Category;
+
 }
