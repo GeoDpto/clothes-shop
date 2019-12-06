@@ -73,4 +73,34 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
             throw new CategoryNotFoundException($slug);
         }
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getById(int $id): Category
+    {
+        $query = $this->createQueryBuilder('c')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults('1')
+            ->getQuery()
+        ;
+
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException $e) {
+            throw new CategoryNotFoundException($id);
+        }
+    }
+
+    public function deleteCategory(Category $category): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->remove($category);
+
+        $em->flush();
+    }
 }

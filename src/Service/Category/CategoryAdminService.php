@@ -45,9 +45,11 @@ class CategoryAdminService implements CategoryAdminServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteCategory(string $slug): void
+    public function deleteCategory(int $id): void
     {
-        // TODO: Implement deleteCategory() method.
+        $this->categoryRepository->deleteCategory($this->categoryRepository->getById($id));
+
+
     }
 
     /**

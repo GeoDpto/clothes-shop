@@ -15,9 +15,9 @@ interface CategoryAdminServiceInterface
 
     /**
      * Deletes category.
-     * @param string $slug
+     * @param int $id
      */
-    public function deleteCategory(string $slug): void;
+    public function deleteCategory(int $id): void;
 
     /**
      * Creates new category.

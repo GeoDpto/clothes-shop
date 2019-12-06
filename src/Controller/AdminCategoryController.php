@@ -39,6 +39,7 @@ class AdminCategoryController extends AbstractController
     {
         return $this->render('admin/category/categories.html.twig', [
             'categories' => $this->categoryService->getCategories(),
+            'success' => $this->success,
         ]);
     }
 
@@ -60,5 +61,14 @@ class AdminCategoryController extends AbstractController
             'EditCategoryForm' => $form->createView(),
             'success' => $this->success,
         ]);
+    }
+
+    public function delete(int $id): Response
+    {
+        $this->success = true;
+
+        $this->categoryAdminService->deleteCategory($id);
+
+        return $this->forward('App\Controller\AdminCategoryController::show', []);
     }
 }
