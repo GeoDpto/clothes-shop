@@ -72,4 +72,8 @@ admin_category_create:
 
 admin_orders:
     path: /admin/orders/
+    controller: App\Controller\AdminOrderController:orders
+
+admin_order_show:
+    path: /admin/orders/order-{id}/
     controller: App\Controller\AdminOrderController:show

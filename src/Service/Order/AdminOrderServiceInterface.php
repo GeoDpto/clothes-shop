@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Order;
 
+use App\Entity\Customer;
 use App\Entity\Order;
 
 interface AdminOrderServiceInterface

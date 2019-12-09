@@ -51,19 +51,21 @@ class OrderRepository extends ServiceEntityRepository
     /**
      * @param int $id
      * @return Order
-     *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getById(int $id): Order
     {
-        $query = $this->createQueryBuilder('o')
-            ->where('o.id = :id')
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->from(Order::class, 'o')
+            ->select('o', 'c', 'p')
+            ->leftJoin('o.customer', 'c')
+            ->innerJoin('o.productId', 'p')
+            ->andWhere('o.id = :id')
             ->setParameter('id', $id)
-            ->setMaxResults(1)
             ->getQuery()
             ->getSingleResult()
-            ;
+        ;
 
         if (!$query) {
             throw new EntityNotFoundException('order');
@@ -72,9 +74,6 @@ class OrderRepository extends ServiceEntityRepository
         return $query;
     }
 
-    /**
-     * @return iterable
-     */
     public function getOrders(): iterable
     {
         return $this->createQueryBuilder('o')
