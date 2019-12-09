@@ -42,7 +42,6 @@ class Order
 
     public function __construct()
     {
-        $this->orderProducts = new ArrayCollection();
         $this->productId = new ArrayCollection();
     }
 
@@ -88,12 +87,14 @@ class Order
     }
 
     /**
-     * @return Collection|Product[]
+     * @return ArrayCollection
      */
-    public function getProduct(): Collection
+    public function getProductId(): Collection
     {
         return $this->productId;
     }
+
+
 
     public function addProduct(Product $product): self
     {
