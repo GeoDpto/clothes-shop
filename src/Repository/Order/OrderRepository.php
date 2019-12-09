@@ -3,6 +3,7 @@
 namespace App\Repository\Order;
 
 use App\Entity\Order;
+use App\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -45,5 +46,40 @@ class OrderRepository extends ServiceEntityRepository
         $em->persist($order);
 
         $em->flush();
+    }
+
+    /**
+     * @param int $id
+     * @return Order
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getById(int $id): Order
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('o.id = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult()
+            ;
+
+        if (!$query) {
+            throw new EntityNotFoundException('order');
+        }
+
+        return $query;
+    }
+
+    /**
+     * @return iterable
+     */
+    public function getOrders(): iterable
+    {
+        return $this->createQueryBuilder('o')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 }
