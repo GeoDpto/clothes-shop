@@ -19,4 +19,9 @@ interface AdminOrderServiceInterface
      * @return iterable
      */
     public function getOrders(): iterable;
+
+    /**
+     * @param int $id
+     */
+    public function deleteById(int $id): void;
 }

@@ -51,6 +51,7 @@ class OrderRepository extends ServiceEntityRepository
     /**
      * @param int $id
      * @return Order
+     *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
@@ -64,7 +65,7 @@ class OrderRepository extends ServiceEntityRepository
             ->andWhere('o.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getSingleResult()
+            ->getOneOrNullResult()
         ;
 
         if (!$query) {
@@ -74,11 +75,29 @@ class OrderRepository extends ServiceEntityRepository
         return $query;
     }
 
+    /**
+     * @return iterable
+     */
     public function getOrders(): iterable
     {
         return $this->createQueryBuilder('o')
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function deleteById(int $id): void
+    {
+        $em = $this->getEntityManager();
+
+        $order = $this->getById($id);
+
+        if (!$order) {
+            throw new EntityNotFoundException('order');
+        }
+
+        $em->remove($order);
+
+        $em->flush();
     }
 }
