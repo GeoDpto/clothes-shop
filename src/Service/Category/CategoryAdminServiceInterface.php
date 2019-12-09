@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 namespace App\Service\Category;
 
+use App\Entity\Category;
+
 interface CategoryAdminServiceInterface
 {
+    public function getById(int $id): Category;
+
     /**
      * Updates created category.
-     * @param string $slug
+     * @param int $id
      * @param array $data
      */
-    public function updateCategory(string $slug, array $data): void;
+    public function updateCategory(int $id, array $data): void;
 
     /**
      * Deletes category.
-     * @param int $id
      */
     public function deleteCategory(int $id): void;
 
     /**
      * Creates new category.
-     * @param array $data
      */
     public function createCategory(array $data): void;
 }

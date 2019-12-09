@@ -104,6 +104,11 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         $em->flush();
     }
 
+    /**
+     * @param Category $category
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function createCategory(Category $category): void
     {
         $em = $this->getEntityManager();
@@ -111,5 +116,24 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         $em->persist($category);
 
         $em->flush();
+    }
+
+    /**
+     * @param int $id
+     * @return iterable
+     */
+    public function getProductsById(int $id): iterable
+    {
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->addSelect('p')
+            ->from(Product::class, 'p')
+            ->leftJoin('p.category', 'c')
+            ->andWhere('c.id = :id')
+            ->setParameter('id', $id)
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
     }
 }

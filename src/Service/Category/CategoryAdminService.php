@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Category;
 
+use App\Collection\ProductCollection;
 use App\Entity\Category;
 use App\Repository\Category\CategoryRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,9 +29,9 @@ class CategoryAdminService implements CategoryAdminServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function updateCategory(string $slug, array $data): void
+    public function updateCategory(int $id, array $data): void
     {
-        $category = $this->categoryRepository->getBySlug($slug);
+        $category = $this->getById($id);
 
         if (!empty($data['title'])) {
             $category->setTitle($data['title']);
@@ -53,6 +54,7 @@ class CategoryAdminService implements CategoryAdminServiceInterface
 
     /**
      * {@inheritdoc}
+     * @throws \Exception
      */
     public function createCategory(array $data): void
     {
@@ -63,5 +65,19 @@ class CategoryAdminService implements CategoryAdminServiceInterface
         }
 
         $this->categoryRepository->createCategory($category);
+    }
+
+    /**
+     * @param int $id
+     * @return ProductCollection
+     */
+    public function getProductsById(int $id): ProductCollection
+    {
+        return new ProductCollection(...$this->categoryRepository->getProductsById($id));
+    }
+
+    public function getById(int $id): Category
+    {
+        return $this->categoryRepository->getById($id);
     }
 }

@@ -12,7 +12,7 @@
             {% for category in categories %}
                     <h3>{{ category.title }}</h3>
                 <br>
-                <a href="{{ path('admin_category_update', {slug: category.slug}) }}">Show</a>
+                <a href="{{ path('admin_category_update', {id: category.id}) }}">Show</a>
                 <a href="{{ path('admin_category_delete', {id: category.id}) }}">Delete</a>
                 <hr>
             {% endfor %}

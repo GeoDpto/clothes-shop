@@ -27,6 +27,11 @@ class AdminCategoryController extends AbstractController
      */
     private $categoryAdminService;
 
+    /**
+     * AdminCategoryController constructor.
+     * @param CategoryServiceInterface $categoryService
+     * @param CategoryAdminServiceInterface $categoryAdminService
+     */
     public function __construct(CategoryServiceInterface $categoryService, CategoryAdminServiceInterface $categoryAdminService)
     {
         $this->categoryService = $categoryService;
@@ -44,7 +49,12 @@ class AdminCategoryController extends AbstractController
         ]);
     }
 
-    public function update(string $slug, Request $request): Response
+    /**
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function update(int $id, Request $request): Response
     {
         $form = $this->createForm(EditCategoryType::class);
 
@@ -53,17 +63,21 @@ class AdminCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->success = true;
 
-            $this->categoryAdminService->updateCategory($slug, $form->getData());
+            $this->categoryAdminService->updateCategory($id, $form->getData());
         }
 
         return $this->render('admin/category/update.html.twig', [
-            'category' => $this->categoryService->getBySlug($slug),
-            'products' => $this->categoryService->getProductsBySlug($slug),
+            'category' => $this->categoryAdminService->getById($id),
+            'products' => $this->categoryAdminService->getProductsById($id),
             'EditCategoryForm' => $form->createView(),
             'success' => $this->success,
         ]);
     }
 
+    /**
+     * @param int $id
+     * @return Response
+     */
     public function delete(int $id): Response
     {
         $this->success = true;
@@ -73,6 +87,10 @@ class AdminCategoryController extends AbstractController
         return $this->forward('App\Controller\AdminCategoryController::show', []);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function create(Request $request): Response
     {
         $form = $this->createForm(CreateCategoryType::class);
