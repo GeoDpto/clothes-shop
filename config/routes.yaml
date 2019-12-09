@@ -81,3 +81,7 @@ admin_order_show:
 admin_order_delete:
     path: /admin/orders/delete/{id}/
     controller: App\Controller\AdminOrderController:delete
+
+admin_products:
+    path: /admin/products/
+    controller: App\Controller\AdminProductController:show
