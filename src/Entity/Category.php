@@ -35,7 +35,7 @@ class Category
     private $products;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
