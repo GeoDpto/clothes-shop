@@ -35,7 +35,7 @@ class Category
     private $products;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
@@ -47,11 +47,14 @@ class Category
 
     /**
      * Category constructor.
+     *
      * @param string $title
+     * @throws \Exception
      */
     public function __construct(string $title)
     {
         $this->title = $title;
+        $this->createdAt = new \DateTime();
         $this->products = new ArrayCollection();
     }
 

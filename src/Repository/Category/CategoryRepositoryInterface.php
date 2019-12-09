@@ -29,4 +29,11 @@ interface CategoryRepositoryInterface
      * @return Category
      */
     public function getBySlug(string $slug): Category;
+
+    /**
+     * @param int $id
+     * @return Category
+     */
+    public function getById(int $id): Category;
+
 }

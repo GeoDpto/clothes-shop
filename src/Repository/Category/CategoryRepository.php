@@ -73,4 +73,67 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
             throw new CategoryNotFoundException($slug);
         }
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getById(int $id): Category
+    {
+        $query = $this->createQueryBuilder('c')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults('1')
+            ->getQuery()
+        ;
+
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException $e) {
+            throw new CategoryNotFoundException($id);
+        }
+    }
+
+    public function deleteCategory(Category $category): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->remove($category);
+
+        $em->flush();
+    }
+
+    /**
+     * @param Category $category
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function createCategory(Category $category): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->persist($category);
+
+        $em->flush();
+    }
+
+    /**
+     * @param int $id
+     * @return iterable
+     */
+    public function getProductsById(int $id): iterable
+    {
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->addSelect('p')
+            ->from(Product::class, 'p')
+            ->leftJoin('p.category', 'c')
+            ->andWhere('c.id = :id')
+            ->setParameter('id', $id)
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
 }
