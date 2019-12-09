@@ -38,4 +38,12 @@ class AdminOrderService implements AdminOrderServiceInterface
     {
         return $this->orderRepository->getOrders();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteById(int $id): void
+    {
+        $this->orderRepository->deleteById($id);
+    }
 }

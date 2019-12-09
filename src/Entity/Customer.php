@@ -106,14 +106,6 @@ class Customer
      */
     private $city;
 
-    /**
-     * @Assert\Type(
-     *     type = "integer",
-     *     message = "Value is not valid."
-     * )
-     *
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
     private $postcode;
 
     /**

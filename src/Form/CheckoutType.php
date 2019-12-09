@@ -6,6 +6,7 @@ use App\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -36,7 +37,7 @@ class CheckoutType extends AbstractType
             ->add('firstAddress', TextType::class)
             ->add('secondAddress', TextType::class, ['required' => false])
             ->add('city', TextType::class)
-            ->add('postcode', TextType::class)
+            ->add('postcode', IntegerType::class, ['required' => false])
         ;
     }
 
