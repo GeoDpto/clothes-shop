@@ -24,4 +24,9 @@ interface ProductRepositoryInterface
      * @return ProductCollection
      */
     public function getLatest(int $count): iterable;
+
+    /**
+     * @return iterable
+     */
+    public function getProducts(): iterable;
 }

@@ -76,4 +76,16 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
 
         return $query->getResult();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProducts(): iterable
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
