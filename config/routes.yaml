@@ -69,3 +69,7 @@ admin_category_delete:
 admin_category_create:
     path: /admin/categories/create/
     controller: App\Controller\AdminCategoryController:create
+
+admin_orders:
+    path: /admin/orders/
+    controller: App\Controller\AdminOrderController:show
