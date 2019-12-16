@@ -85,3 +85,7 @@ admin_order_delete:
 admin_products:
     path: /admin/products/
     controller: App\Controller\AdminProductController:show
+
+admin_products_create:
+    path: /admin/products/create
+    controller: App\Controller\AdminProductController:create

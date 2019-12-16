@@ -61,7 +61,9 @@ class Product
 
     /**
      * Product constructor.
+     *
      * @param string $title
+     * @throws \Exception
      */
     public function __construct(string $title)
     {
@@ -69,6 +71,7 @@ class Product
         $this->images = new ArrayCollection();
         $this->orderProducts = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

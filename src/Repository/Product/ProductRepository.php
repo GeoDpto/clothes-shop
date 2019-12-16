@@ -7,7 +7,6 @@ use App\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
  * @method Product|null findOneBy(array $criteria, array $orderBy = null)
@@ -18,7 +17,6 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
 {
     /**
      * ProductRepository constructor.
-     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -87,5 +85,17 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addProduct(Product $product): void
+    {
+        $em = $this->getEntityManager();
+
+        $em->persist($product);
+
+        $em->flush();
     }
 }

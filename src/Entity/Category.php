@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Category\CategoryRepository")
  */
 class Category
 {
@@ -56,6 +56,11 @@ class Category
         $this->title = $title;
         $this->createdAt = new \DateTime();
         $this->products = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string) $this->title;
     }
 
     public function getId(): ?int
