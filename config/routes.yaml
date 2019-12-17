@@ -93,3 +93,7 @@ admin_products_create:
 admin_products_delete:
     path: /admin/products/delete-{id}
     controller: App\Controller\AdminProductController:delete
+
+admin_export:
+    path: /admin/export/
+    controller: App\Controller\AdminExportController:export
