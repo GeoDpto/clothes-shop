@@ -62,7 +62,7 @@ class ProductAdminService implements ProductAdminServiceInterface
         }
 
         if (!empty($data['mainImage'])) {
-            $product->setMainImage($this->imageUploadService->getUploadDir().$this->imageUploadService->upload($data['mainImage']));
+            $product->setMainImage($this->imageUploadService->upload($data['mainImage']));
         }
 
         if (!empty($data['images'])) {
@@ -71,7 +71,7 @@ class ProductAdminService implements ProductAdminServiceInterface
                 $imageName = $this->imageUploadService->upload($uploadedImage);
 
                 $image->setName($imageName);
-                $image->setFolder($this->imageUploadService->getUploadDir().$imageName);
+                $image->setFolder($imageName);
 
                 $this->em->persist($image);
 
