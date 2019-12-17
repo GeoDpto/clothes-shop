@@ -136,12 +136,11 @@
                     {% for product in latestProducts.slice(8) %}
                         <div class="col-lg-3 col-md-6">
                             <div class="single-product">
-                                <img class="img-fluid" src="{{ product.mainImage }}" alt="">
+                            <img class="img-fluid" src="{{asset('uploads/images/') ~ product.mainImage }}" alt="">
                                 <div class="product-details">
                                     <a href="{{ path('product', {id: product.id}) }}"><h6>{{ product.title }}</h6></a>
                                     <div class="price">
                                         <h6>$ {{ product.price }}</h6>
-{#                                        <h6 class="l-through">$210.00</h6>#}
                                     </div>
                                     <div class="prd-bottom">
                                         <a href="" class="social-info">
