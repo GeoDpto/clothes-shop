@@ -31,9 +31,15 @@
                     <span class="title">Orders</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link ">
+                    <i class="icon-tag"></i>
+                    <span class="title">Order View</span>
+                </a>
+            </li>
             {% endif %}
             <li class="nav-item">
-                <a href="{{ path('admin_products') }}" class="nav-link ">
+                <a href="#" class="nav-link ">
                     <i class="icon-graph"></i>
                     <span class="title">Products</span>
                 </a>
@@ -42,6 +48,12 @@
                 <a href="{{ path('admin_categories') }}" class="nav-link ">
                     <i class="icon-graph"></i>
                     <span class="title">Categories</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="#" class="nav-link">
+                    <i class="icon-graph"></i>
+                    <span class="title">Product Edit</span>
                 </a>
             </li>
             {% if is_granted('ROLE_ADMIN') %}

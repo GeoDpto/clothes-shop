@@ -11,8 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-    private const DEFAULT_IMAGE = 'noimage.png';
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -63,19 +61,14 @@ class Product
 
     /**
      * Product constructor.
-     *
      * @param string $title
-     * @param string $mainImage
-     *
-     * @throws \Exception
      */
-    public function __construct(string $title, string $mainImage = null)
+    public function __construct(string $title)
     {
-        $this->mainImage = $mainImage ?? self::DEFAULT_IMAGE;
         $this->title = $title;
         $this->images = new ArrayCollection();
+        $this->orderProducts = new ArrayCollection();
         $this->orders = new ArrayCollection();
-        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

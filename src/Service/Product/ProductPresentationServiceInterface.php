@@ -29,9 +29,4 @@ interface ProductPresentationServiceInterface
     public function getLatest(int $count = 20): ProductCollection;
 
     public function getPaginatedProducts(int $int = 0): PaginationInterface;
-
-    /**
-     * @return ProductCollection
-     */
-    public function getProducts(): ProductCollection;
 }

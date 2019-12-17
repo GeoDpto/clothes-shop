@@ -21,18 +21,7 @@ interface ProductRepositoryInterface
     public function getById(int $id): Product;
 
     /**
-     * @param int $count
      * @return ProductCollection
      */
     public function getLatest(int $count): iterable;
-
-    /**
-     * @return iterable
-     */
-    public function getProducts(): iterable;
-
-    /**
-     * @param Product $product
-     */
-    public function addProduct(Product $product): void;
 }
