@@ -5,7 +5,11 @@
     <h1>Export to .csv format</h1>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12">
-
+            <h3>Select fields in products for export.</h3>
+            {{ form_start(formExport) }}
+            {{ form_widget(formExport) }}
+            <button type="submit">Export to CSV</button>
+            {{ form_end(formExport) }}
         </div>
     </div>
 {% endblock %}
