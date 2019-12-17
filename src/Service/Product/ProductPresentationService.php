@@ -69,4 +69,12 @@ class ProductPresentationService implements ProductPresentationServiceInterface
     {
         return new ProductCollection(...$this->productPresentationRepository->getLatest($count));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProducts(): ProductCollection
+    {
+        return new ProductCollection(...$this->productPresentationRepository->getProducts());
+    }
 }

@@ -28,7 +28,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="single-product" id="product-{{ product.id }}">
                                     <a href="{{ path('product', {id: product.id }) }}">
-                                        <img class="img-fluid" src="{{ product.mainImage }}" alt="">
+                                        <img class="img-fluid" src="{{asset('uploads/images/') ~ product.mainImage}}" alt="">
                                     </a>
                                     <div class="product-details">
                                         <a href="{{ path('product', {id: product.id }) }}">

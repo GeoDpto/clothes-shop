@@ -20,7 +20,10 @@
 
 .idea/
 template/
+public/uploads/*
+
 ###> friendsofphp/php-cs-fixer ###
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
+
