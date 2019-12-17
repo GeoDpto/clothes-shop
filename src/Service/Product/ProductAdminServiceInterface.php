@@ -15,10 +15,4 @@ interface ProductAdminServiceInterface
      * @param array $data
      */
     public function createProduct(array $data): void;
-
-    /**
-     * @param int $id
-     * @param array $data
-     */
-    public function updateProduct(int $id, array $data): void;
 }

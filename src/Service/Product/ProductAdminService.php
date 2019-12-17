@@ -45,7 +45,7 @@ class ProductAdminService implements ProductAdminServiceInterface
      */
     public function deleteById($id): void
     {
-        // TODO: Implement deleteById() method.
+        $this->productRepository->deleteById($id);
     }
 
     /**
@@ -83,13 +83,5 @@ class ProductAdminService implements ProductAdminServiceInterface
         $product->setCategory($data['category']);
 
         $this->productRepository->addProduct($product);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function updateProduct(int $id, array $data): void
-    {
-        // TODO: Implement updateProduct() method.
     }
 }

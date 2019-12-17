@@ -40,7 +40,7 @@ class AdminProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product", name="admin_product")
+     * @Route("/admin/products", name="admin_products")
      */
     public function show(): Response
     {
@@ -68,5 +68,16 @@ class AdminProductController extends AbstractController
             'createProductForm' => $form->createView(),
             'success' => $this->success,
         ]);
+    }
+
+    /**
+     * @param int $id
+     * @return Response
+     */
+    public function delete(int $id): Response
+    {
+        $this->productAdminService->deleteById($id);
+
+        return $this->redirectToRoute('admin_products');
     }
 }

@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Exception\EntityNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\ORMException;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,7 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
 {
     /**
      * ProductRepository constructor.
+     * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -95,6 +97,26 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
         $em = $this->getEntityManager();
 
         $em->persist($product);
+
+        $em->flush();
+    }
+
+    /**
+     * Deletes product by id.
+     *
+     * @param int $id
+     * @throws ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function deleteById(int $id): void
+    {
+        $em = $this->getEntityManager();
+
+        try {
+            $em->remove($this->getById($id));
+        } catch (ORMException $exception) {
+            throw new EntityNotFoundException('product');
+        }
 
         $em->flush();
     }
