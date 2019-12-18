@@ -32,3 +32,7 @@ services:
     App\Service\Image\ImageUploadService:
         class:  App\Service\Image\ImageUploadService
         arguments: ['images_directory%']
+
+    App\Service\Export\CsvExportService:
+        class: App\Service\Export\CsvExportService
+        arguments: ["@=service('request_stack').getCurrentRequest().getBaseUrl()"]
