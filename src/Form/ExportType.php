@@ -11,7 +11,7 @@ class ExportType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('product_id', CheckboxType::class, [
+            ->add('isPublished', CheckboxType::class, [
                 'label' => 'Is published',
                 'required' => false,
                 'attr' => ['checked' => 'checked'],
