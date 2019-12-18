@@ -1,0 +1,62 @@
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+            <li class="sidebar-toggler-wrapper hide">
+                <div class="sidebar-toggler">
+                    <span></span>
+                </div>
+            </li>
+            <li class="sidebar-search-wrapper">
+                <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                    <a href="javascript:;" class="remove">
+                        <i class="icon-close"></i>
+                    </a>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                                        <a href="javascript:;" class="btn submit">
+                                            <i class="icon-magnifier"></i>
+                                        </a>
+                                    </span>
+                    </div>
+                </form>
+            </li>
+            <li class="heading">
+                <h3 class="uppercase">Pages</h3>
+            </li>
+            {% if is_granted('ROLE_MANAGER') %}
+            <li class="nav-item">
+                <a href="{{ path('admin_orders') }}" class="nav-link ">
+                    <i class="icon-basket"></i>
+                    <span class="title">Orders</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a href="{{ path('admin_products') }}" class="nav-link ">
+                    <i class="icon-graph"></i>
+                    <span class="title">Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('admin_categories') }}" class="nav-link ">
+                    <i class="icon-graph"></i>
+                    <span class="title">Categories</span>
+                </a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item ">
+                <a href="{{ path('admin_users') }}" class="nav-link">
+                    <i class="icon-user"></i>
+                    <span class="title">Users</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="nav-item ">
+                <a href="{{ path('admin_export') }}" class="nav-link">
+                    <span class="title">Export</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

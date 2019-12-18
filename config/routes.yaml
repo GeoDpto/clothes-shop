@@ -1,3 +1,99 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+products:
+    path: /products/
+    controller: App\Controller\ProductsController:show
+
+product:
+    path: /products/product-{id}/
+    controller: App\Controller\ProductController:showProduct
+
+category:
+    path: /products/category/{slug}/
+    controller: App\Controller\CategoryController:showCategory
+
+contact:
+    path: /contact/
+    controller: App\Controller\ContactController:show
+
+cart:
+    path: /cart/
+    controller: App\Controller\CartController:showCart
+
+checkout:
+    path: /checkout/
+    controller: App\Controller\CheckoutController:checkout
+
+login:
+    path: /login/
+    controller: App\Controller\AuthController:login
+
+logout:
+    path: /logout/
+    controller: App\Controller\AuthController:logout
+
+admin_index:
+    path: /admin/
+    controller: App\Controller\AdminDefaultController:index
+
+admin_users:
+    path: /admin/users/
+    controller: App\Controller\AdminUserController:show
+
+admin_user_update:
+    path: /admin/users/user-{id}/
+    controller: App\Controller\AdminUserController:update
+
+admin_user_create:
+    path: /admin/users/create/
+    controller: App\Controller\AdminUserController:create
+
+admin_user_delete:
+    path: /admin/users/delete/{id}/
+    controller: App\Controller\AdminUserController:delete
+
+admin_categories:
+    path: /admin/categories/
+    controller: App\Controller\AdminCategoryController:show
+
+admin_category_update:
+    path: /admin/category/category-{id}/
+    controller: App\Controller\AdminCategoryController:update
+
+admin_category_delete:
+    path: /admin/categories/delete/{id}/
+    controller: App\Controller\AdminCategoryController:delete
+
+admin_category_create:
+    path: /admin/categories/create/
+    controller: App\Controller\AdminCategoryController:create
+
+admin_orders:
+    path: /admin/orders/
+    controller: App\Controller\AdminOrderController:orders
+
+admin_order_show:
+    path: /admin/orders/order-{id}/
+    controller: App\Controller\AdminOrderController:show
+
+admin_order_delete:
+    path: /admin/orders/delete/{id}/
+    controller: App\Controller\AdminOrderController:delete
+
+admin_products:
+    path: /admin/products/
+    controller: App\Controller\AdminProductController:show
+
+admin_products_create:
+    path: /admin/products/create
+    controller: App\Controller\AdminProductController:create
+
+admin_products_delete:
+    path: /admin/products/delete-{id}
+    controller: App\Controller\AdminProductController:delete
+
+admin_export:
+    path: /admin/export/
+    controller: App\Controller\AdminExportController:export

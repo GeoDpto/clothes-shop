@@ -1,0 +1,19 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+    {% if success %}
+        <div style="background:greenyellow; padding:20px;">
+            <h1>Category was successfully created!</h1>
+        </div>
+    {% endif %}
+    <h1>Create category</h1>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-xs-12">
+            {{ form_start(createCategoryForm) }}
+                {{ form_row(createCategoryForm.title) }}
+                {{ form_row(createCategoryForm.description) }}
+                <button type="submit">Create category</button>
+            {{ form_end(createCategoryForm) }}
+        </div>
+    </div>
+{% endblock %}

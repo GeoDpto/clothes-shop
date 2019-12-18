@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="margin-bottom:100px;"></div>
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col"></th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="{{ asset('uploads/images/') ~ product.mainImage }}" alt="{{ product.title }}" style="max-width:150px;">
+                                    </div>
+                                    <div class="media-body">
+                                        <p>{{ product.title }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                <h5>${{ product.price }}</h5>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <h5>Total Price</h5>
+                            </td>
+                            <td>
+                                <h5>${{ totalPrice }}</h5>
+                            </td>
+                        </tr>
+                        <tr class="out_button_area">
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <a class="primary-btn" href="{{ path('checkout') }}">Proceed to checkout</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

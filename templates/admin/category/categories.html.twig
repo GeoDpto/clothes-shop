@@ -1,0 +1,22 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block body %}
+    {% if success %}
+        <div style="background:greenyellow; padding:20px;">
+            <h1>User was successfully deleted!</h1>
+        </div>
+    {% endif %}
+    <h1>Categories:</h1>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            {% for category in categories %}
+                    <h3>{{ category.title }}</h3>
+                <br>
+                <a href="{{ path('admin_category_update', {id: category.id}) }}">Show</a>
+                <a href="{{ path('admin_category_delete', {id: category.id}) }}">Delete</a>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+    <h1 style="margin-bottom:50px;"><a href="{{ path('admin_category_create') }}">Add Category</a></h1>
+{% endblock %}
