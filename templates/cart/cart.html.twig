@@ -21,7 +21,7 @@
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="{{ asset(product.mainImage) }}" alt="{{ product.title }}" style="max-width:150px;">
+                                        <img src="{{ asset('uploads/images/') ~ product.mainImage }}" alt="{{ product.title }}" style="max-width:150px;">
                                     </div>
                                     <div class="media-body">
                                         <p>{{ product.title }}</p>
