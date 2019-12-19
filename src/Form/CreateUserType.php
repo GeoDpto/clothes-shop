@@ -28,10 +28,11 @@ class CreateUserType extends AbstractType
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
                     'Manager' => 'ROLE_MANAGER',
+                    'Editor' => 'ROLE_EDITOR',
                     'User' => 'ROLE_USER',
                 ],
                 'constraints' => new Choice([
-                    'choices' => ['ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN'],
+                    'choices' => ['ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_EDITOR'],
                     'message' => 'Invalid value of choice',
                 ]),
             ])
