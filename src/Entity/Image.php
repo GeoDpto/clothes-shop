@@ -23,6 +23,7 @@ class Image
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="images")
+     *
      */
     private $product;
 
