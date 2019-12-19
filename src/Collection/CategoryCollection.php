@@ -52,10 +52,14 @@ class CategoryCollection implements \IteratorAggregate
      * @param int $number
      * @return iterable
      */
-    public function slice(int $number): iterable
+    public function slice(int $number): ?iterable
     {
         for ($i = 0; $i < $number; ++$i) {
-            yield $this->shift();
+            try {
+                yield $this->shift();
+            } catch (CollectionIsEmptyException $exception) {
+                return null;
+            }
         }
     }
 }
