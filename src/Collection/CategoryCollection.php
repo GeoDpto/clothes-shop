@@ -29,15 +29,9 @@ class CategoryCollection implements \IteratorAggregate
      *
      * @throws CollectionIsEmptyException
      */
-    public function shift(): Category
+    public function shift(): ?Category
     {
-        $category = \array_shift($this->categories);
-
-        if (null === $category) {
-            throw new CollectionIsEmptyException('category');
-        }
-
-        return $category;
+        return \array_shift($this->categories);
     }
 
     /**
@@ -55,11 +49,7 @@ class CategoryCollection implements \IteratorAggregate
     public function slice(int $number): ?iterable
     {
         for ($i = 0; $i < $number; ++$i) {
-            try {
-                yield $this->shift();
-            } catch (CollectionIsEmptyException $exception) {
-                return null;
-            }
+            yield $this->shift();
         }
     }
 }
