@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Exception\CategoryNotFoundException;
 use App\Service\Cart\CartService;
 use App\Service\Category\CategoryServiceInterface;
 use App\Service\Product\ProductPresentationServiceInterface;
@@ -14,6 +15,7 @@ class CategoryController extends AbstractController
 {
     /**
      * @Route("/products/category/{slug}", name="category")
+     *
      * @param string $slug
      * @param CategoryServiceInterface $categoryService
      * @param Request $request
@@ -31,9 +33,15 @@ class CategoryController extends AbstractController
             $cartService->addProduct($presentationService->getById($request->request->get('product_id')));
         }
 
+        try {
+            $products = $categoryService->getProductsBySlug($slug);
+        } catch (CategoryNotFoundException $exception) {
+            throw $this->createNotFoundException('This category not found.');
+        }
+
         return $this->render('category/category.html.twig', [
             'categories' => $categoryService->getAll(),
-            'products' => $categoryService->getProductsBySlug($slug),
+            'products' => $products,
         ]);
     }
 }

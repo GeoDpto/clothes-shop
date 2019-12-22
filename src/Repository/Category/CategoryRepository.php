@@ -50,7 +50,13 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
             ->getQuery()
             ;
 
-        return $query->getResult();
+        $data = $query->getResult();
+
+        if (!$data) {
+            throw new CategoryNotFoundException($slug);
+        }
+
+        return $data;
     }
 
     /**
