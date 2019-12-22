@@ -27,7 +27,9 @@ class ProductController extends AbstractController
                                 CartService $cartService): Response
     {
         if ($request->isMethod('POST')) {
-            $cartService->addProduct($productPresentationService->getById($request->request->get('product_id')));
+            return $this->redirectToRoute('add_cart', [
+                'product_id' => $request->request->get('product_id'),
+            ]);
         }
 
         return $this->render('product/product.html.twig', [

@@ -19,8 +19,12 @@ contact:
     controller: App\Controller\ContactController:show
 
 cart:
-    path: /cart/
+    path: /cart
     controller: App\Controller\CartController:showCart
+
+add_cart:
+    path: /cart/add/
+    controller: App\Controller\CartController:add
 
 checkout:
     path: /checkout/

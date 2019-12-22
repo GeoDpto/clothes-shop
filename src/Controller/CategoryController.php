@@ -30,7 +30,9 @@ class CategoryController extends AbstractController
                                  ProductPresentationServiceInterface $presentationService): Response
     {
         if ($request->isMethod('POST')) {
-            $cartService->addProduct($presentationService->getById($request->request->get('product_id')));
+            return $this->redirectToRoute('add_cart', [
+                'product_id' => $request->request->get('product_id'),
+                ]);
         }
 
         try {

@@ -26,7 +26,9 @@ class ProductsController extends AbstractController
                          CartService $cartService): Response
     {
         if ($request->isMethod('POST')) {
-            $cartService->addProduct($presentationService->getById($request->request->get('product_id')));
+            return $this->redirectToRoute('add_cart', [
+                'product_id' => $request->request->get('product_id'),
+            ]);
         }
 
         $products = $presentationService->getPaginatedProducts($request->query->getInt('page', 1));
