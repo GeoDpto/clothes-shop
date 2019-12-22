@@ -11,5 +11,5 @@ interface CustomerServiceInterface
     /**
      * @param Customer $customer
      */
-    public function addCustomer(Customer $customer): void;
+    public function save(Customer $customer): void;
 }

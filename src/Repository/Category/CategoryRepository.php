@@ -115,7 +115,7 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function createCategory(Category $category): void
+    public function save(Category $category): void
     {
         $em = $this->getEntityManager();
 

@@ -97,7 +97,7 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
     /**
      * {@inheritdoc}
      */
-    public function addProduct(Product $product): void
+    public function save(Product $product): void
     {
         $em = $this->getEntityManager();
 

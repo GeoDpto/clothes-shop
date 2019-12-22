@@ -99,7 +99,7 @@ class AdminCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->success = true;
-            $this->categoryAdminService->createCategory($form->getData());
+            $this->categoryAdminService->save($form->getData());
         }
 
         return $this->render('admin/category/create.html.twig', [

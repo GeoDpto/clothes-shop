@@ -60,7 +60,7 @@ class AdminProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->productAdminService->createProduct($form->getData());
+            $this->productAdminService->save($form->getData());
             $this->success = true;
         }
 

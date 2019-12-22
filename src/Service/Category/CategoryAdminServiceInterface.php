@@ -25,5 +25,5 @@ interface CategoryAdminServiceInterface
     /**
      * Creates new category.
      */
-    public function createCategory(array $data): void;
+    public function save(array $data): void;
 }

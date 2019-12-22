@@ -28,7 +28,7 @@ class CustomerRepository extends ServiceEntityRepository
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function addCustomer(Customer $customer): void
+    public function save(Customer $customer): void
     {
         $em = $this->getEntityManager();
 

@@ -39,7 +39,7 @@ class CheckoutController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $customer = $form->getData();
-            $customerService->addCustomer($customer);
+            $customerService->save($customer);
             $checkoutService->addOrder($customer->getEmail(), $cart);
             $cartService->EmptyCart();
 

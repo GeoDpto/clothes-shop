@@ -34,5 +34,5 @@ interface ProductRepositoryInterface
     /**
      * @param Product $product
      */
-    public function addProduct(Product $product): void;
+    public function save(Product $product): void;
 }

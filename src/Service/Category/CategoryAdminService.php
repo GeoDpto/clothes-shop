@@ -56,7 +56,7 @@ class CategoryAdminService implements CategoryAdminServiceInterface
      * {@inheritdoc}
      * @throws \Exception
      */
-    public function createCategory(array $data): void
+    public function save(array $data): void
     {
         $category = new Category($data['title']);
 
@@ -64,7 +64,7 @@ class CategoryAdminService implements CategoryAdminServiceInterface
             $category->setDescription($data['description']);
         }
 
-        $this->categoryRepository->createCategory($category);
+        $this->categoryRepository->save($category);
     }
 
     /**

@@ -53,7 +53,7 @@ class ProductAdminService implements ProductAdminServiceInterface
      *
      * @throws \Exception
      */
-    public function createProduct(array $data): void
+    public function save(array $data): void
     {
         $product = new Product($data['title']);
 
@@ -82,6 +82,6 @@ class ProductAdminService implements ProductAdminServiceInterface
         $product->setPrice($data['price']);
         $product->setCategory($data['category']);
 
-        $this->productRepository->addProduct($product);
+        $this->productRepository->save($product);
     }
 }

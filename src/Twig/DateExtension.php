@@ -12,20 +12,20 @@ class DateExtension extends AbstractExtension
     /**
      * @return array|TwigFilter[]
      */
-/*    public function getFilters()
+    public function getFilters()
     {
         return [
-            new TwigFilter('date', [$this, 'formatDate']),
+            new TwigFilter('formatDate', [$this, 'formatDate']),
         ];
-    }*/
+    }
 
     /**
      * @param \DateTimeInterface $date
      * @param string $format
      * @return string
-     *//*
+     */
     public function formatDate(\DateTimeInterface $date, string $format = 'd-m-Y H:i:s'): string
     {
         return $date->format($format);
-    }*/
+    }
 }

@@ -14,5 +14,5 @@ interface ProductAdminServiceInterface
     /**
      * @param array $data
      */
-    public function createProduct(array $data): void;
+    public function save(array $data): void;
 }

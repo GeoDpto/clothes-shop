@@ -26,8 +26,8 @@ class CustomerService implements CustomerServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function addCustomer(Customer $customer): void
+    public function save(Customer $customer): void
     {
-        $this->customerRepository->addCustomer($customer);
+        $this->customerRepository->save($customer);
     }
 }

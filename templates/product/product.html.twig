@@ -25,8 +25,7 @@
                         </ul>
                         <p>{{ product.description | raw }}</p>
                         <div class="product_count">
-                            <label for="qty">Quantity:</label>
-                            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                            <label for="qty">Created: {{ product.createdAt | formatDate }}</label>
                         </div>
                         <div class="card_area d-flex align-items-center">
                             <form method="POST">
