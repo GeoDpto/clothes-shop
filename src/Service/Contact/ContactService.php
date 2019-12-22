@@ -23,26 +23,42 @@ class ContactService implements ContactServiceInterface
      * @var Environment
      */
     private $templating;
+    /**
+     * @var string
+     */
+    private $sender;
+    /**
+     * @var string
+     */
+    private $recipient;
 
     /**
      * ContactService constructor.
+     * @param string $sender
+     * @param string $recipient
      * @param ContactRepositoryInterface $contactRepository
      * @param \Swift_Mailer $mailer
      * @param Environment $templating
      */
-    public function __construct(ContactRepositoryInterface $contactRepository, \Swift_Mailer $mailer, Environment $templating)
+    public function __construct(string $sender,
+                                string $recipient,
+                                ContactRepositoryInterface $contactRepository,
+                                \Swift_Mailer $mailer,
+                                Environment $templating)
     {
         $this->contactRepository = $contactRepository;
         $this->mailer = $mailer;
         $this->templating = $templating;
+        $this->sender = $sender;
+        $this->recipient = $recipient;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function insertContactData(Contact $contact): void
+    public function save(Contact $contact): void
     {
-        $this->contactRepository->insertContactData($contact);
+        $this->contactRepository->save($contact);
     }
 
     /**
@@ -51,8 +67,8 @@ class ContactService implements ContactServiceInterface
     public function sendMail(Contact $contact): void
     {
         $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
-            ->setTo('recipient@example.com')
+            ->setFrom($this->sender)
+            ->setTo($this->recipient)
             ->setBody(
                 $this->templating->render('email/contact_email.html.twig',
                     [
@@ -66,5 +82,15 @@ class ContactService implements ContactServiceInterface
             );
 
         $this->mailer->send($message);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function handleCustomerService(Contact $data): void
+    {
+        $this->sendMail($data);
+
+        $this->save($data);
     }
 }

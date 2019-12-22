@@ -36,3 +36,8 @@ services:
   App\Service\Export\CsvExportService:
     class: App\Service\Export\CsvExportService
     arguments: ["@=service('request_stack').getCurrentRequest().getBaseUrl()"]
+
+  App\Service\Contact\ContactService:
+    arguments:
+      $sender: 'send@example.com'
+      $recipient: 'recipient@example.com'

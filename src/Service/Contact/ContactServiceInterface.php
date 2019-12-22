@@ -11,10 +11,15 @@ interface ContactServiceInterface
     /**
      * @param Contact $contact
      */
-    public function insertContactData(Contact $contact): void;
+    public function save(Contact $contact): void;
 
     /**
      * @param Contact $data
      */
     public function sendMail(Contact $data): void;
+
+    /**
+     * @param Contact $data
+     */
+    public function handleCustomerService(Contact $data): void;
 }

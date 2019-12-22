@@ -26,11 +26,8 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
 
-            $contactService->sendMail($data);
-
-            $contactService->insertContactData($data);
+            $contactService->handleCustomerService($form->getData());
 
             return $this->render('contact/success.html.twig', [
             ]);

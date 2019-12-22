@@ -11,5 +11,5 @@ interface ContactRepositoryInterface
     /**
      * @param Contact $contact
      */
-    public function insertContactData(Contact $contact): void;
+    public function save(Contact $contact): void;
 }

@@ -26,7 +26,7 @@ class ContactRepository extends ServiceEntityRepository implements ContactReposi
     /**
      * {@inheritdoc}
      */
-    public function insertContactData(Contact $contact): void
+    public function save(Contact $contact): void
     {
         $em = $this->getEntityManager();
 
