@@ -29,27 +29,26 @@ class CheckoutController extends AbstractController
                              CustomerServiceInterface $customerService,
                              OrderServiceInterface $checkoutService): Response
     {
-        $products = $cartService->getCartProducts();
+        $cart = $cartService->getCart();
         $form = $this->createForm(CheckoutType::class);
         $form->handleRequest($request);
 
-        if ($cartService->isEmpty()) {
-            throw new CartIsEmptyException();
+        if (empty($cart)) {
+
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $customer = $form->getData();
             $customerService->addCustomer($customer);
-            $checkoutService->addOrder($products, $customer->getEmail(), $products);
-            $cartService->setEmptyCart();
+            $checkoutService->addOrder($cart, $customer->getEmail(), $cart);
+            $cartService->EmptyCart();
 
             return $this->render('checkout/success.html.twig', [
             ]);
         }
 
         return $this->render('checkout/checkout.html.twig', [
-            'totalPrice' => $cartService->getTotalPrice(),
-            'products' => $products,
+            'cart' => $cart,
             'checkout' => $form->createView(),
         ]);
     }

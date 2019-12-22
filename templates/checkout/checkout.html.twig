@@ -18,14 +18,14 @@
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <li><a href="#">Product <span>Total</span></a></li>
-                                {% for product in products %}
+                                {% for product in cart %}
                                 <li><a href="{{ path('product', {id: product.id}) }}">{{ product.title }}  <span class="last">${{ product.price }}</span></a>
                                     <span>x 01</span>
                                 </li>
                                 {% endfor %}
                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">Total <span>${{ totalPrice }}</span></a></li>
+                                <li><a href="#">Total <span>${{ cart.getTotalPrice }}</span></a></li>
                             </ul>
                         </div>
                     </div>

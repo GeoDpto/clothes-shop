@@ -31,8 +31,7 @@ class CartController extends AbstractController
     public function showCart(): Response
     {
         return $this->render('cart/cart.html.twig', [
-            'products' => $this->cartService->getCartProducts(),
-            'totalPrice' => $this->cartService->getTotalPrice(),
+            'cart' => $this->cartService->getCart(),
         ]);
     }
 
@@ -42,7 +41,7 @@ class CartController extends AbstractController
     public function miniCart(): Response
     {
         return $this->render('cart/_minicart.html.twig', [
-            'countProducts' => $this->cartService->countProducts(),
+            'cart' => $this->cartService->getCart(),
         ]);
     }
 

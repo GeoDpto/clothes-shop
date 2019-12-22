@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Cart;
 
+use App\Collection\CartCollecton;
 use App\Entity\Product;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -13,11 +14,6 @@ class CartService
      * @var SessionInterface
      */
     protected $session;
-
-    /**
-     * @var int
-     */
-    protected $taxRate = 20;
 
     /**
      * CartService constructor.
@@ -41,12 +37,6 @@ class CartService
     {
         $cart = $this->session->get('cart');
 
-        $entity = [
-            'product' => $product,
-            'quantity' => $quantity,
-            'price' => $product->getPrice(),
-        ];
-
         $cart[$product->getId()] = $product;
 
         $this->session->set('cart', $cart);
@@ -55,48 +45,18 @@ class CartService
     /**
      * @return array
      */
-    public function getCartProducts(): array
+    public function getCart(): CartCollecton
     {
-        return $this->session->get('cart');
+        return new CartCollecton($this->session);
     }
 
-    /**
-     * @return float
-     */
-    public function getTotalPrice(): float
-    {
-        $total = 0;
-
-        foreach ($this->session->get('cart') as $product) {
-            $total += $product->getPrice();
-        }
-
-        return $total;
-    }
 
     /**
      * Sets empty a cart.
      */
-    public function setEmptyCart(): void
+    public function EmptyCart(): void
     {
         $this->session->set('cart', []);
     }
 
-    /**
-     * @return bool
-     */
-    public function isEmpty(): bool
-    {
-        return empty($this->session->get('cart'));
-    }
-
-    /**
-     * @return int
-     */
-    public function countProducts(): int
-    {
-        $cart = $this->session->get('cart');
-
-        return count($cart);
-    }
 }

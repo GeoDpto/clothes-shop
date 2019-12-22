@@ -6,6 +6,7 @@
         <div class="container">
             <div class="cart_inner">
                 <div class="table-responsive">
+                    {% if not cart.isEmpty %}
                     <table class="table">
                         <thead>
                         <tr>
@@ -16,7 +17,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for product in products %}
+                        {% for product in cart %}
                         <tr>
                             <td>
                                 <div class="media">
@@ -51,7 +52,7 @@
                                 <h5>Total Price</h5>
                             </td>
                             <td>
-                                <h5>${{ totalPrice }}</h5>
+                                <h5>${{ cart.getTotalPrice }}</h5>
                             </td>
                         </tr>
                         <tr class="out_button_area">
@@ -72,6 +73,9 @@
                         </tr>
                         </tbody>
                     </table>
+                    {% else %}
+                    <h1>Cart is empty.</h1>
+                    {% endif %}
                 </div>
             </div>
         </div>
