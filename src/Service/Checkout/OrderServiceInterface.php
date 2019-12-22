@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Service\Checkout;
 
+use App\Collection\CartCollecton;
+
 interface OrderServiceInterface
 {
     /**
-     * @param array $data
      * @param string $mail
-     * @param array $products
+     * @param CartCollecton $products
      */
-    public function addOrder(array $data, string $mail, array $products): void;
+    public function addOrder(string $mail, CartCollecton $products): void;
 }

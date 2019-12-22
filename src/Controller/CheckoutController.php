@@ -40,7 +40,7 @@ class CheckoutController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $customer = $form->getData();
             $customerService->addCustomer($customer);
-            $checkoutService->addOrder($cart, $customer->getEmail(), $cart);
+            $checkoutService->addOrder($customer->getEmail(), $cart);
             $cartService->EmptyCart();
 
             return $this->render('checkout/success.html.twig', [

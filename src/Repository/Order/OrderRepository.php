@@ -21,27 +21,13 @@ class OrderRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param array $data
-     * @param string $mail
-     * @param array $checkoutProducts
+     * @param Order $order
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function addOrder(array $data, string $mail, array $checkoutProducts): void
+    public function addOrder(Order $order): void
     {
         $em = $this->getEntityManager();
-        $customer = $em->getRepository('App:Customer')->findOneBy(['email' => $mail]);
-
-        $order = new Order();
-
-        $order->setCustomer($customer)
-            ->setDate(new \DateTimeImmutable())
-        ;
-
-        foreach ($checkoutProducts as $checkoutProduct) {
-            $product = $em->getRepository('App:Product')->findOneBy(['id' => $checkoutProduct->getId()]);
-            $order->addProduct($product);
-        }
 
         $em->persist($order);
 
@@ -49,9 +35,7 @@ class OrderRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $id
      * @return Order
-     *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */

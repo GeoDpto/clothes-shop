@@ -47,11 +47,11 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
     public function getById(int $id): Product
     {
         $query = $this->createQueryBuilder('p')
-            ->innerJoin('p.images', 'i')
-            ->addSelect('i')
             ->andWhere('p.id = :id')
             ->setParameter('id', $id)
             ->andWhere('p.createdAt IS NOT NULL')
+            ->leftJoin('p.images', 'i')
+            ->addSelect('i')
             ->getQuery()
         ;
 
@@ -61,7 +61,7 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
             throw new EntityNotFoundException('product');
         }
 
-        return $query->getOneOrNullResult();
+        return $result;
 
     }
 
