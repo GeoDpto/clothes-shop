@@ -14,17 +14,14 @@ class ProductController extends AbstractController
 {
     /**
      * @Route("/products/product-{id}", name="product")
+     *
      * @param int $id
      * @param ProductPresentationServiceInterface $productPresentationService
-     * @param ImagePresentationServiceInterface $imagePresentationService
      * @param Request $request
-     * @param CartService $cartService
      * @return Response
      */
     public function showProduct(int $id, ProductPresentationServiceInterface $productPresentationService,
-                                ImagePresentationServiceInterface $imagePresentationService,
-                                Request $request,
-                                CartService $cartService): Response
+                                Request $request): Response
     {
         if ($request->isMethod('POST')) {
             return $this->redirectToRoute('add_cart', [
@@ -34,7 +31,6 @@ class ProductController extends AbstractController
 
         return $this->render('product/product.html.twig', [
             'product' => $productPresentationService->getById($id),
-            'images' => $imagePresentationService->getImagesByProductId($id),
         ]);
     }
 }

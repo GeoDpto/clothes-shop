@@ -9,7 +9,7 @@
                         <div class="single-prd-item">
                             <img class="img-fluid" src="{{asset('uploads/images/') ~ product.mainImage }}" alt="">
                         </div>
-                        {% for image in images %}
+                        {% for image in product.images %}
                         <div class="single-prd-item">
                             <img class="img-fluid" src="{{asset('uploads/images/') ~ image.folder }}" alt="">
                         </div>
