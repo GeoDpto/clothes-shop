@@ -44,7 +44,7 @@ class AdminCategoryController extends AbstractController
     public function show(): Response
     {
         return $this->render('admin/category/categories.html.twig', [
-            'categories' => $this->categoryService->getCategories(),
+            'categories' => $this->categoryService->getAll(),
             'success' => $this->success,
         ]);
     }

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/default", name="default")
+     * @Route("/", name="index")
      *
      * @param ProductPresentationServiceInterface $productPresentation
      * @param CategoryServiceInterface $categoryService
@@ -21,7 +21,7 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/index.html.twig', [
             'latestProducts' => $productPresentation->getLatest(16),
-            'categories' => $categoryService->getCategories(),
+            'categories' => $categoryService->getAll(),
         ]);
     }
 }

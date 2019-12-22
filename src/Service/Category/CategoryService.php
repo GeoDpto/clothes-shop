@@ -44,8 +44,8 @@ class CategoryService implements CategoryServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getCategories(): CategoryCollection
+    public function getAll(): CategoryCollection
     {
-        return new CategoryCollection(...$this->categoryRepository->getCategories());
+        return new CategoryCollection(...$this->categoryRepository->getAll());
     }
 }

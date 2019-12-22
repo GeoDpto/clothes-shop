@@ -26,7 +26,7 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
     /**
      * {@inheritdoc}
      */
-    public function getCategories(): iterable
+    public function getAll(): iterable
     {
         $query = $this->createQueryBuilder('c')
             ->getQuery();

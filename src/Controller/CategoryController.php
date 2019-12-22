@@ -32,7 +32,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->render('category/category.html.twig', [
-            'categories' => $categoryService->getCategories(),
+            'categories' => $categoryService->getAll(),
             'products' => $categoryService->getProductsBySlug($slug),
         ]);
     }

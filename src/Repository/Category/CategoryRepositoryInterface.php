@@ -14,7 +14,7 @@ interface CategoryRepositoryInterface
      *
      * @return iterable
      */
-    public function getCategories(): iterable;
+    public function getAll(): iterable;
 
     /**
      * Returns collection of articles in category by slug.

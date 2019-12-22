@@ -32,7 +32,7 @@ class ProductsController extends AbstractController
         $products = $presentationService->getPaginatedProducts($request->query->getInt('page', 1));
 
         return $this->render('products/products.html.twig', [
-            'categories' => $categoryService->getCategories(),
+            'categories' => $categoryService->getAll(),
             'products' => $products,
         ]);
     }

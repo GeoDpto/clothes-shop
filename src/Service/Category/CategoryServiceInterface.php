@@ -15,7 +15,7 @@ interface CategoryServiceInterface
      *
      * @return CategoryCollection
      */
-    public function getCategories(): CategoryCollection;
+    public function getAll(): CategoryCollection;
 
     /**
      * Returns collection of articles in category by slug.

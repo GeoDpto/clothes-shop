@@ -17,11 +17,9 @@ class ContactController extends AbstractController
      *
      * @param Request $request
      * @param ContactServiceInterface $contactService
-     * @param \Swift_Mailer $mailer
-     * @param ValidatorInterface $validator
      * @return Response
      */
-    public function show(Request $request, ContactServiceInterface $contactService, \Swift_Mailer $mailer, ValidatorInterface $validator): Response
+    public function show(Request $request, ContactServiceInterface $contactService): Response
     {
         $form = $this->createForm(ContactType::class);
 
