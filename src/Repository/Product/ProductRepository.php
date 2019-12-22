@@ -53,11 +53,14 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
               ->getQuery()
         ;
 
-        if (null !== $query->getOneOrNullResult()) {
-            return $query->getOneOrNullResult();
+        $result = $query->getOneOrNullResult();
+
+        if (!$result) {
+            throw new EntityNotFoundException('product');
         }
 
-        throw new EntityNotFoundException('product');
+        return $query->getOneOrNullResult();
+
     }
 
     /**
