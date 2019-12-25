@@ -51,10 +51,11 @@ class UserRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param User $user
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function addUser(User $user): void
+    public function add(User $user): void
     {
         $em = $this->getEntityManager();
 
@@ -68,7 +69,7 @@ class UserRepository extends ServiceEntityRepository
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function deleteById(User $user): void
+    public function delete(User $user): void
     {
         $em = $this->getEntityManager();
 

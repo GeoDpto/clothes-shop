@@ -101,7 +101,7 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         }
     }
 
-    public function deleteCategory(Category $category): void
+    public function delete(Category $category): void
     {
         $em = $this->getEntityManager();
 

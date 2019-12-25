@@ -76,7 +76,7 @@ class AdminProductController extends AbstractController
      */
     public function delete(int $id): Response
     {
-        $this->productAdminService->deleteById($id);
+        $this->productAdminService->delete($id);
 
         return $this->redirectToRoute('admin_products');
     }

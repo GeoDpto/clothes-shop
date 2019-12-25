@@ -59,7 +59,7 @@ class AdminOrderController extends AbstractController
     {
         $this->success = true;
 
-        $this->adminOrderService->deleteById($id);
+        $this->adminOrderService->delete($id);
 
         return $this->redirectToRoute('admin_orders');
     }

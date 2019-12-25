@@ -23,5 +23,5 @@ interface AdminOrderServiceInterface
     /**
      * @param int $id
      */
-    public function deleteById(int $id): void;
+    public function delete(int $id): void;
 }

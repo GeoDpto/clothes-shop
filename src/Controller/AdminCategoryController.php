@@ -63,7 +63,7 @@ class AdminCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->success = true;
 
-            $this->categoryAdminService->updateCategory($id, $form->getData());
+            $this->categoryAdminService->update($id, $form->getData());
         }
 
         return $this->render('admin/category/update.html.twig', [
@@ -82,7 +82,7 @@ class AdminCategoryController extends AbstractController
     {
         $this->success = true;
 
-        $this->categoryAdminService->deleteCategory($id);
+        $this->categoryAdminService->delete($id);
 
         return $this->forward('App\Controller\AdminCategoryController::show', []);
     }

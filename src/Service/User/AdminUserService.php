@@ -66,7 +66,7 @@ class AdminUserService implements AdminUserServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function addUser(array $data): void
+    public function add(array $data): void
     {
         if ($this->entityManager->getRepository('App:User')->findOneBy(['email' => $data['email']])) {
             throw new UserExistsException($data['email']);
@@ -78,7 +78,7 @@ class AdminUserService implements AdminUserServiceInterface
              ->setPasswordHash($this->userPasswordEncoder->encodePassword($user, $data['passwordHash']))
         ;
 
-        $this->userRepository->addUser($user);
+        $this->userRepository->add($user);
     }
 
     /**
@@ -89,7 +89,7 @@ class AdminUserService implements AdminUserServiceInterface
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function deleteById(int $id): void
+    public function delete(int $id): void
     {
         $user = $this->getById($id);
 
@@ -97,7 +97,7 @@ class AdminUserService implements AdminUserServiceInterface
             throw new UserNotExistsException($id);
         }
 
-        $this->userRepository->deleteById($user);
+        $this->userRepository->delete($user);
     }
 
     /**
@@ -105,7 +105,7 @@ class AdminUserService implements AdminUserServiceInterface
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function updateUser(int $id, array $data): void
+    public function update(int $id, array $data): void
     {
         $user = $this->getById($id);
 

@@ -15,15 +15,17 @@ interface CategoryAdminServiceInterface
      * @param int $id
      * @param array $data
      */
-    public function updateCategory(int $id, array $data): void;
+    public function update(int $id, array $data): void;
 
     /**
      * Deletes category.
+     * @param int $id
      */
-    public function deleteCategory(int $id): void;
+    public function delete(int $id): void;
 
     /**
      * Creates new category.
+     * @param array $data
      */
     public function save(array $data): void;
 }

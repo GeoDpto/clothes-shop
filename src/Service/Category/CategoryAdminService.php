@@ -29,7 +29,7 @@ class CategoryAdminService implements CategoryAdminServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function updateCategory(int $id, array $data): void
+    public function update(int $id, array $data): void
     {
         $category = $this->getById($id);
 
@@ -47,9 +47,9 @@ class CategoryAdminService implements CategoryAdminServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteCategory(int $id): void
+    public function delete(int $id): void
     {
-        $this->categoryRepository->deleteCategory($this->categoryRepository->getById($id));
+        $this->categoryRepository->delete($this->categoryRepository->getById($id));
     }
 
     /**

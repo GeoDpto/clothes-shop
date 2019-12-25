@@ -113,7 +113,7 @@ class ProductRepository extends ServiceEntityRepository implements ProductReposi
      * @throws ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function deleteById(int $id): void
+    public function delete(int $id): void
     {
         $em = $this->getEntityManager();
 

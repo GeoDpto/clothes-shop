@@ -70,7 +70,7 @@ class OrderRepository extends ServiceEntityRepository
             ;
     }
 
-    public function deleteById(int $id): void
+    public function delete(int $id): void
     {
         $em = $this->getEntityManager();
 

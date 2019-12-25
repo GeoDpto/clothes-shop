@@ -43,9 +43,9 @@ class ProductAdminService implements ProductAdminServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteById($id): void
+    public function delete($id): void
     {
-        $this->productRepository->deleteById($id);
+        $this->productRepository->delete($id);
     }
 
     /**

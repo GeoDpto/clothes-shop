@@ -22,16 +22,16 @@ interface AdminUserServiceInterface
     /**
      * @param array $data
      */
-    public function addUser(array $data): void;
+    public function add(array $data): void;
 
     /**
      * @param int $id
      */
-    public function deleteById(int $id): void;
+    public function delete(int $id): void;
 
     /**
      * @param int $id
      * @param array $data
      */
-    public function updateUser(int $id, array $data): void;
+    public function update(int $id, array $data): void;
 }

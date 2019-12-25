@@ -54,7 +54,7 @@ class AdminUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->successMessage = true;
 
-            $this->adminUserService->updateUser($id, $form->getData());
+            $this->adminUserService->update($id, $form->getData());
         }
 
         return $this->render('admin/users/update.html.twig', [
@@ -77,7 +77,7 @@ class AdminUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->successMessage = true;
 
-            $this->adminUserService->addUser($form->getData());
+            $this->adminUserService->add($form->getData());
         }
 
         return $this->render('admin/users/create.html.twig', [
@@ -94,7 +94,7 @@ class AdminUserController extends AbstractController
     {
         $this->successMessage = true;
 
-        $this->adminUserService->deleteById($id);
+        $this->adminUserService->delete($id);
 
         return $this->forward('App\Controller\AdminUserController::show', []);
     }

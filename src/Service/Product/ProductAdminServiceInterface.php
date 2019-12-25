@@ -9,7 +9,7 @@ interface ProductAdminServiceInterface
     /**
      * @param $id
      */
-    public function deleteById($id): void;
+    public function delete($id): void;
 
     /**
      * @param array $data

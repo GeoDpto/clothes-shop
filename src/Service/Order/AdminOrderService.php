@@ -42,8 +42,8 @@ class AdminOrderService implements AdminOrderServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function deleteById(int $id): void
+    public function delete(int $id): void
     {
-        $this->orderRepository->deleteById($id);
+        $this->orderRepository->delete($id);
     }
 }
