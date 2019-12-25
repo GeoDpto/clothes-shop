@@ -24,7 +24,14 @@ class AdminExportController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $exportService->export($form->getData());
+            $filename = sprintf('products_%s.csv', date('Y-m-d'));
+
+            $file = $exportService->export($form->getData());
+
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename="'.$filename.'";');
+
+            fpassthru($file);
         }
 
         return $this->render('admin/export/export.html.twig', [

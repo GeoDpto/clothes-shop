@@ -27,7 +27,7 @@ class CsvExportService implements ExportServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function export(array $data): void
+    public function export(array $data)
     {
         if (false === $data['isPublished']) {
             $products = $this->productRepository->getProducts();
@@ -39,7 +39,6 @@ class CsvExportService implements ExportServiceInterface
             throw new ExportDataIsEmptyException();
         }
 
-        $filename = sprintf('products_%s.csv', date('Y-m-d'));
         $delimiter = ';';
         $file = fopen('php://memory', 'w');
         $fields = ['id', 'title', 'description', 'price', 'category', 'mainImage', 'createdAt'];
@@ -61,11 +60,6 @@ class CsvExportService implements ExportServiceInterface
 
         fseek($file, 0);
 
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="'.$filename.'";');
-
-        fpassthru($file);
-
-        die;
+        return $file;
     }
 }
